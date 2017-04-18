@@ -15,6 +15,11 @@ class CreateSubcountiesTable extends Migration
     {
         Schema::create('subcounties', function (Blueprint $table) {
             $table->increments('id');
+            $table->String('name',100);
+            $table->foreign('district')->references('id')->on('DistrictsTable');
+            $table->foreign('county')->references('id')->on('CountiesTable');
+            $table->integer('created_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }
