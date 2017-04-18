@@ -14,12 +14,14 @@ class CreateCountiesTable extends Migration
     public function up()
     {
         Schema::create('counties', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->String('name',100);
-            $table->foreign('district')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
             $table->integer('created_by');
             $table->integer('updated_by');
+            $table->integer('district_id')->unsigned();
             $table->timestamps();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

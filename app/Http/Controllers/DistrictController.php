@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Datatables;
+use App\District;
 use Illuminate\Http\Request;
 
 class DistrictController extends Controller
@@ -11,11 +14,11 @@ class DistrictController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +26,11 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        return view('district.index');
+    }
+
+    public function get_districts(){
+      return Datatables::of(District::query())->make(true);
     }
 
     /**
@@ -33,7 +40,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
+        return view('district.create');
     }
 
     /**
@@ -44,7 +51,27 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::user()->id;
+        $district = new District();
+        $district->name = $request->name;
+        $district->dho_name = $request->dho_name;
+        $district->region=$request->region;
+        $district->dho_office_tel=$request->dho_office_tel;
+        $district->dho_mobile_tel=$request->dho_mobile_tel;
+        $district->zone=$request->zone;
+        $district->medicines_manager_name=$request->medicines_manager_name;
+        $district->medicines_manager_tel=$request->medicines_manager_tel;
+        $district->address=$request->address;
+        $district->created_by = $user_id;
+        $district->updated_by = $user_id;
+
+        if($district->save()){
+          flash("District has been saved!","success");
+          return redirect('/districts');
+        }
+        else{
+          flash("Something went wrong while processing your request! Try again later","error");
+        }
     }
 
     /**

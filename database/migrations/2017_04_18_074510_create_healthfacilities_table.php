@@ -14,24 +14,37 @@ class CreateHealthfacilitiesTable extends Migration
     public function up()
     {
         Schema::create('healthfacilities', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->String('name',100);
-            $table->foreign('district')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('county')->references('id')->on('counties')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('subcounty')->references('id')->on('subcounties')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('parish')->references('id')->on('parishes')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('village')->references('id')->on('villages')->onDelete('cascade')->onUpdate('cascade'); 
-            $table->string('address',100);
-            $table->integer('general_tel',12);
-            $table->string('general_email',100);
-            $table->string('code',100);
-            $table->string('incharge_name',100);
-            $table->integer('incharge_tel',12);
-            $table->string('number_of_staff',100);
-            $table->string('level',100);
+            $table->string('name');
+            $table->string('address');
+            $table->string('general_tel');
+            $table->string('general_email');
+            $table->string('code');
+            $table->string('incharge_name');
+            $table->string('incharge_tel');
+            $table->string('store_manager_name');
+            $table->string('store_manager_tel');
+            $table->string('bio_stat_name');
+            $table->string('bio_stat_tel');
+            $table->string('number_of_staff');
+            $table->string('level');
+            $table->string('x_cord');
+            $table->string('y_cord');
+            $table->integer('district_id')->unsigned();
+            $table->integer('county_id')->unsigned();
+            $table->integer('subcounty_id')->unsigned();
+            $table->integer('parish_id')->unsigned();
+            $table->integer('village_id')->unsigned();
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('county_id')->references('id')->on('counties')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('subcounty_id')->references('id')->on('subcounties')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('parish_id')->references('id')->on('parishes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

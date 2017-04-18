@@ -16,3 +16,6 @@ Route::get('/','Auth\LoginController@showLoginForm');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('districts','DistrictController');
+Route::get('/get_districts', 'DistrictController@get_districts');
