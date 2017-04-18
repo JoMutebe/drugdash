@@ -16,9 +16,9 @@ class CreateParishesTable extends Migration
         Schema::create('parishes', function (Blueprint $table) {
             $table->increments('id');
             $table->String('name',100);
-            $table->foreign('district')->references('id')->on('DistrictsTable');
-            $table->foreign('county')->references('id')->on('CountiesTable');
-            $table->foreign('subcounty')->references('id')->on('SubcountiesTable');
+            $table->foreign('district')->references('id')->on('districts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('county')->references('id')->on('counties')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('subcounty')->references('id')->on('subcounties')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
