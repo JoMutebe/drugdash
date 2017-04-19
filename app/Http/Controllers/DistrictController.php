@@ -30,7 +30,9 @@ class DistrictController extends Controller
     }
 
     public function get_districts(){
-      return Datatables::of(District::query())->make(true);
+      return Datatables::of(District::query())->addColumn('action', function ($district) {
+                return '<a href="districts/'.$district->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
     /**

@@ -20,6 +20,7 @@
                 <th>Region</th>
                 <th>DHO Name</th>
                 <th>DHO Tel</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -39,7 +40,8 @@
           { data: 'name', name: 'name' },
           { data: 'region', name: 'region' },
           { data: 'dho_name', name: 'dho_name' },
-          { data: 'dho_office_tel', name: 'dho_office_tel'}
+          { data: 'dho_office_tel', name: 'dho_office_tel'},
+          {data: 'action', name: 'action', orderable: false, searchable: false}
 
         ]
       });
