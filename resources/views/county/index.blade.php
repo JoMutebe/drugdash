@@ -16,6 +16,7 @@
               <tr>
                 <th>Name</th>
                 <th>District</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -34,6 +35,7 @@
         columns: [
           { data: 'name', name: 'name' },
           { data: 'district_id', name: 'district_id' },
+          {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
       });
     });

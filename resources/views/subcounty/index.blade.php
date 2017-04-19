@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>District</th>
                 <th>County</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -36,6 +37,7 @@
           { data: 'name', name: 'name' },
           { data: 'district_id', name: 'district_id' },
           { data: 'county_id', name: 'county_id' },
+          {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
       });
     });

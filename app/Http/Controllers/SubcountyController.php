@@ -30,7 +30,9 @@ class SubcountyController extends Controller
       return view('subcounty.index');
     }
     public function get_subcounties(){
-      return Datatables::of(Subcounty::query())->make(true);
+      return Datatables::of(Subcounty::query())->addColumn('action', function ($subcounty) {
+                return '<a href="subcounties/'.$subcounty->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
     /**
      * Show the form for creating a new resource.

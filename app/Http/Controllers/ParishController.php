@@ -31,7 +31,9 @@ class ParishController extends Controller
     }
 
     public function get_parishes(){
-      return Datatables::of(Parish::query())->make(true);
+      return Datatables::of(Parish::query())->addColumn('action', function ($parish) {
+                return '<a href="parishes/'.$parish->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
     /**

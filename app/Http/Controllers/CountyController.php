@@ -33,7 +33,9 @@ class CountyController extends Controller
     }
 
     public function get_counties(){
-      return Datatables::of(County::query())->make(true);
+      return Datatables::of(County::query())->addColumn('action',function($county){
+        return '<a href="counties/' .$county->id.'"><i class="fa fa-eye"></i></a>';
+      })->editcolumn('id','ID: {{$id}}')->make(true);
     }
 
     /**
