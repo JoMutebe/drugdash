@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Parish;
+use Datatables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ParishController extends Controller
 {
@@ -23,8 +27,9 @@ class ParishController extends Controller
      */
     public function index()
     {
-        return view('parish.index');
+      return view('parish.index');
     }
+
     public function get_parishes(){
       return Datatables::of(Parish::query())->make(true);
     }
@@ -36,7 +41,10 @@ class ParishController extends Controller
      */
     public function create()
     {
-        return view('parish.create');
+      $districts = DB::table('districts')->get();
+      $counties = DB::table('counties')->get();
+      $subcounties = DB::table('subcounties')->get();
+        return view('parish.create',compact('districts','counties','subcounties'));
     }
 
     /**
@@ -50,11 +58,11 @@ class ParishController extends Controller
       $user_id = Auth::user()->id;
       $parish = new Parish();
       $parish->name = $request->name;
-      $parish->district_id = $request->district_id
-      $parish->county_id = $request->county_id
-      $parish->subcounty_id = $request->subcounty_id
-      $parish->created_by = $user_id
-      $parish->updated_by = $user_id
+      $parish->district_id = $request->district_id;
+      $parish->county_id = $request->county_id;
+      $parish->subcounty_id = $request->subcounty_id;
+      $parish->created_by = $user_id;
+      $parish->updated_by = $user_id;
 
       if($parish->save()){
         flash("Parish has been saved!","success");

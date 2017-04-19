@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Log;
+use Auth;
+use Datatables;
+use App\County;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CountyController extends Controller
 {
@@ -26,6 +31,7 @@ class CountyController extends Controller
     {
         return view('county.index');
     }
+
     public function get_counties(){
       return Datatables::of(County::query())->make(true);
     }
@@ -37,7 +43,8 @@ class CountyController extends Controller
      */
     public function create()
     {
-          return view('county.create');
+       $districts = DB::table('districts')->get();
+       return view('county.create', compact('districts'));
     }
 
     /**
@@ -53,7 +60,7 @@ class CountyController extends Controller
           $county->name = $request->name;
           $county->district_id = $request->district_id;
           $county->created_by = $user_id;
-          $county->updated_by = $user_id;  
+          $county->updated_by = $user_id;
 
           if($county->save()){
             flash("County has been saved!","success");

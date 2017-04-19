@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Datatables;
+use App\Subcounty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubcountyController extends Controller
 {
@@ -35,7 +39,9 @@ class SubcountyController extends Controller
      */
     public function create()
     {
-      return view('subcounty.create');
+      $districts = DB::table('districts')->get();
+      $counties = DB::table('counties')->get();
+      return view('subcounty.create', compact('districts','counties'));
     }
 
     /**

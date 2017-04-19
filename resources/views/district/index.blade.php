@@ -5,9 +5,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
           Districts
-          <button class="btn btn-primary pull-right"   title="Add district">
+          <a class="btn btn-sm btn-primary pull-right"   title="Add district" href="{{action('DistrictController@create')}}">
               <i class="fa fa-plus"></i>
-          </button>
+          </a>
 
 
         </div>

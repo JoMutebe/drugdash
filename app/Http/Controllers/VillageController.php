@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Datatables;
+use App\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VillageController extends Controller
 {
@@ -36,7 +40,11 @@ class VillageController extends Controller
      */
     public function create()
     {
-        return view('village.create');
+      $districts = DB::table('districts')->get();
+      $counties = DB::table('counties')->get();
+      $subcounties = DB::table('subcounties')->get();
+      $parishes = DB::table('parishes')->get();
+      return view('village.create',compact('districts','counties','subcounties','parishes'));
     }
 
     /**
