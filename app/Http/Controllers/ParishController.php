@@ -23,7 +23,10 @@ class ParishController extends Controller
      */
     public function index()
     {
-        //
+        return view('parish.index');
+    }
+    public function get_parishes(){
+      return Datatables::of(Parish::query())->make(true);
     }
 
     /**
@@ -33,7 +36,7 @@ class ParishController extends Controller
      */
     public function create()
     {
-        //
+        return view('parish.create');
     }
 
     /**
@@ -44,7 +47,22 @@ class ParishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id = Auth::user()->id;
+      $parish = new Parish();
+      $parish->name = $request->name;
+      $parish->district_id = $request->district_id
+      $parish->county_id = $request->county_id
+      $parish->subcounty_id = $request->subcounty_id
+      $parish->created_by = $user_id
+      $parish->updated_by = $user_id
+
+      if($parish->save()){
+        flash("Parish has been saved!","success");
+        return redirect('/parishes');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
     }
 
     /**

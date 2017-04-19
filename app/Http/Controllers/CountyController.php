@@ -24,7 +24,10 @@ class CountyController extends Controller
      */
     public function index()
     {
-        //
+        return view('county.index');
+    }
+    public function get_counties(){
+      return Datatables::of(County::query())->make(true);
     }
 
     /**
@@ -34,7 +37,7 @@ class CountyController extends Controller
      */
     public function create()
     {
-        //
+          return view('county.create');
     }
 
     /**
@@ -45,7 +48,21 @@ class CountyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $user_id = Auth::user()->id;
+          $county = new County();
+          $county->name = $request->name;
+          $county->district_id = $request->district_id;
+          $county->created_by = $user_id;
+          $county->updated_by = $user_id;  
+
+          if($county->save()){
+            flash("County has been saved!","success");
+            return redirect('/counties');
+          }
+          else{
+            flash("Something went wrong while processing your request! Try again later","error");
+          }
+
     }
 
     /**

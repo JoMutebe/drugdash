@@ -15,7 +15,7 @@ class HealthfacilityController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +23,10 @@ class HealthfacilityController extends Controller
      */
     public function index()
     {
-        //
+        return view('healthfacility.index');
+    }
+    public function get_healthfacilities(){
+      return Datatables::of(Healthfacility::query())->make(true);
     }
 
     /**
@@ -33,7 +36,7 @@ class HealthfacilityController extends Controller
      */
     public function create()
     {
-        //
+      return view('healthfacility.create');
     }
 
     /**
@@ -44,7 +47,39 @@ class HealthfacilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id= Auth::user()->id;
+      $healthfacility=new Healthfacility();
+      $healthfacility->name=$request->name;
+      $healthfacility->general_tel=$request->general_tel;
+      $healthfacility->general_email=$request->general_email;
+      $healthfacility->code=$request->code;
+      $healthfacility->incharge_name=$request->incharge_name;
+      $healthfacility->incharge_tel=$request->incharge_tel;
+      $healthfacility->store_manager_name=$request->store_manager_name;
+      $healthfacility->store_manager_tel=$request->store_manager_tel;
+      $healthfacility->general_tel=$request->general_tel;
+      $healthfacility->bio_stat_name=$request->bio_stat_tel;
+      $healthfacility->number_of_staff=$request->number_of_staff;
+      $healthfacility->level=$request->level;
+      $healthfacility->x_cord=$request->x_cord;
+      $healthfacility->y_cord=$request->y_cord;
+      $healthfacility->district_id=$request->district_id;
+      $healthfacility->county_id=$request->county_id;
+      $healthfacility->sub_county_id=$request->sub_county_id;
+      $healthfacility->parish_id=$request->Parish_id;
+      $healthfacility->village_id=$request->village_id;    
+      $healthfacility->created_by = $user_id;
+      $healthfacility->updated_by = $user_id;
+
+      if($healthfacility->save()){
+        flash("Healthfacility has been saved!","success");
+        return redirect('/healthfacilities');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
+  }
+
     }
 
     /**

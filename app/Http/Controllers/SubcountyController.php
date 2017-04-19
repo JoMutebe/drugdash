@@ -23,9 +23,11 @@ class SubcountyController extends Controller
      */
     public function index()
     {
-        //
+      return view('subcounty.index');
     }
-
+    public function get_subcounties(){
+      return Datatables::of(Subcounty::query())->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +35,7 @@ class SubcountyController extends Controller
      */
     public function create()
     {
-        //
+      return view('subcounty.create');
     }
 
     /**
@@ -44,7 +46,21 @@ class SubcountyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id = Auth::user()->id;
+      $subcounty = new Subcounty();
+      $subcounty->name = $request->name;
+      $subcounty->district_id = $request->district_id;
+      $subcounty->county_id = $request->county_id;
+      $subcounty->created_by = $user_id;
+      $subcounty->updated_by = $user_id;
+      if($subcounty->save()){
+        flash("Subcounty has been saved!","success");
+        return redirect('/subcounties');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
+
     }
 
     /**

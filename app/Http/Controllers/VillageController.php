@@ -15,7 +15,7 @@ class VillageController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +23,10 @@ class VillageController extends Controller
      */
     public function index()
     {
-        //
+      return view('village.index');
+    }
+    public function get_villages(){
+      return Datatables::of(Village::query())->make(true);
     }
 
     /**
@@ -33,7 +36,7 @@ class VillageController extends Controller
      */
     public function create()
     {
-        //
+        return view('village.create');
     }
 
     /**
@@ -44,7 +47,23 @@ class VillageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id = Auth::user()->id;
+      $village = new Village();
+      $village->name = $request->name;
+      $village->district_id=$request->district_id;
+      $village->county_id=$request->county_id;
+      $village->subcounty_id=$request->subcounty_id;
+      $village->parish_id=$request->parish_id;
+      $village->created_by=$user_id;
+      $village->updated_by=$user_id;
+
+      if($village->save()){
+        flash("Village has been saved!","success");
+        return redirect('/villages');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
     }
 
     /**
