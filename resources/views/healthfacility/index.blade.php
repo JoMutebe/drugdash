@@ -20,6 +20,7 @@
                 <th>Village</th>
                 <th>Type</th>
                 <th>General Tel</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -42,6 +43,7 @@
           { data: 'village_id', name: 'village_id' },
           { data: 'level', name: 'level' },
           { data: 'general_tel', name:'general_tel'},
+          {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
       });
     });

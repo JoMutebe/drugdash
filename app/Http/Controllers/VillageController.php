@@ -30,7 +30,9 @@ class VillageController extends Controller
       return view('village.index');
     }
     public function get_villages(){
-      return Datatables::of(Village::query())->make(true);
+      return Datatables::of(Village::query())->addColumn('action', function ($village) {
+                return '<a href="villages/'.$village->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
     /**

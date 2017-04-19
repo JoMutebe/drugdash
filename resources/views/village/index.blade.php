@@ -19,6 +19,7 @@
                 <th>County</th>
                 <th>Subcounty</th>
                 <th>Parish</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -40,6 +41,7 @@
           { data: 'county_id', name: 'county_id' },
           { data: 'subcounty_id', name: 'subcounty_id' },
           { data: 'parish_id', name: 'parish_id' },
+          {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
       });
     });
