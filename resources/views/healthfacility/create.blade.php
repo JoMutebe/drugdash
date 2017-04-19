@@ -51,7 +51,7 @@
 
           <div class="form-group">
               {!! Form::label('subcounty_id', 'Subcounty') !!}
-              <select class="form-control" name="subcounty_id" id="county_id" data-parsley-required="true">
+              <select class="form-control" name="subcounty_id" id="subcounty_id" data-parsley-required="true">
               @foreach ($subcounties as $sub)
               {
                 <option value="{{ $sub->id }}">{{ $sub->name }}</option>
@@ -70,16 +70,38 @@
               @endforeach
             </select>
           </div>
+          <div class="form-group">
+              {!! Form::label('village_id', 'Village') !!}
+              <select class="form-control" name="village_id" id="village_id" data-parsley-required="true">
+              @foreach ($villages as $par)
+              {
+                <option value="{{ $par->id }}">{{ $par->name }}</option>
+              }
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+              {!! Form::label('general_tel', 'General Telephone') !!}
+              {!! Form::text('general_tel', '',['class' => 'form-control']) !!}
+          </div>
 
           <div class="form-group">
-              {!! Form::label('general_email', 'General Email') !!}
-              {!! Form::text('general_email', '',['class' => 'form-control']) !!}
+              {!! Form::label('code', 'Healthfacility Code') !!}
+              {!! Form::text('code', '',['class' => 'form-control']) !!}
           </div>
+
+
+
         </div>
 
         <div class="col-md-6">
 
 
+          <div class="form-group">
+              {!! Form::label('general_email', 'General Email') !!}
+              {!! Form::text('general_email', '',['class' => 'form-control']) !!}
+          </div>
+          
           <div class="form-group">
               {!! Form::label('incharge_name', 'Name of Incharge') !!}
               {!! Form::text('incharge_name', '',['class' => 'form-control']) !!}
@@ -98,6 +120,10 @@
           <div class="form-group">
               {!! Form::label('store_manager_tel', 'Store Manager Tel') !!}
               {!! Form::text('store_manager_tel', '',['class' => 'form-control']) !!}
+          </div>
+          <div class="form-group">
+              {!! Form::label('number_of_staff', 'Number of Staff') !!}
+              {!! Form::text('number_of_staff', '',['class' => 'form-control']) !!}
           </div>
 
           <div class="form-group">
