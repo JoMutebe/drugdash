@@ -32,5 +32,5 @@ Route::get('/get_parishes','ParishController@get_parishes');
 Route::resource('villages','VillageController');
 Route::get('/get_villages','VillageController@get_villages');
 
-Route::resource('healthfacilities','HealthcenterController');
-Route::get('/get_healthfacilities','HealthcenterController@get_healthfacilities');
+Route::resource('healthfacilities','HealthfacilityController');
+Route::get('/get_healthfacilities','HealthfacilityController@get_healthfacilities');

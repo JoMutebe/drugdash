@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Datatables;
+use App\Healthfacility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HealthfacilityController extends Controller
 {
@@ -25,6 +29,7 @@ class HealthfacilityController extends Controller
     {
         return view('healthfacility.index');
     }
+
     public function get_healthfacilities(){
       return Datatables::of(Healthfacility::query())->make(true);
     }
@@ -36,7 +41,12 @@ class HealthfacilityController extends Controller
      */
     public function create()
     {
-      return view('healthfacility.create');
+      $districts = DB::table('districts')->get();
+      $counties = DB::table('counties')->get();
+      $subcounties = DB::table('subcounties')->get();
+      $parishes = DB::table('parishes')->get();
+      $villages = DB::table('villages')->get();
+      return view('healthfacility.create',compact('districts','counties','subcounties','parishes','villages'));
     }
 
     /**
@@ -67,7 +77,7 @@ class HealthfacilityController extends Controller
       $healthfacility->county_id=$request->county_id;
       $healthfacility->sub_county_id=$request->sub_county_id;
       $healthfacility->parish_id=$request->Parish_id;
-      $healthfacility->village_id=$request->village_id;    
+      $healthfacility->village_id=$request->village_id;
       $healthfacility->created_by = $user_id;
       $healthfacility->updated_by = $user_id;
 
@@ -78,7 +88,7 @@ class HealthfacilityController extends Controller
       else{
         flash("Something went wrong while processing your request! Try again later","error");
       }
-  }
+
 
     }
 
