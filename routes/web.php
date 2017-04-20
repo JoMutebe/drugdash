@@ -43,3 +43,6 @@ Route::get('/get_stockitems','StockitemsController@get_stockitems');
 
 Route::resource('issue','IssueController');
 Route::get('/get_issue','IssueController@get_issue');
+
+Route::resource('issuediscussion','IssuediscussionController');
+Route::get('/get_issuediscussion','IssuediscussionController@get_issue');
