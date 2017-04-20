@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Datatables;
-use App\Issue;
+use App\Issuediscussion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class IssueController extends Controller
+class IssuediscussionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,11 @@ class IssueController extends Controller
      */
     public function index()
     {
-        return view('issue.index');
+        return view('issuediscussion.index');
     }
     public function get_issues(){
-      return Datatables::of(Issue::query())->addColumn('action', function ($issue) {
-                return '<a href="issues/'.$issue->id.'"><i class="fa fa-eye"></i></a>';
+      return Datatables::of(Issuediscussion::query())->addColumn('action', function ($issuediscussion) {
+                return '<a href="issuediscussions/'.$issuediscussion->id.'"><i class="fa fa-eye"></i></a>';
             })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
@@ -32,9 +32,8 @@ class IssueController extends Controller
      */
     public function create()
     {
-      $districts = DB::table('districts')->get();
-      $healthfacilities=DB::table('healthfacilities')->get();
-      return view('issue.create',compact('districts','healthfacilities'));
+      $issues = DB::table('issues')->get();
+      return view('issuediscussion.create',compact('issues'));
     }
 
     /**
@@ -46,17 +45,16 @@ class IssueController extends Controller
     public function store(Request $request)
     {
       $user_id = Auth::user()->id;
-      $issue = new Issue();
-      $issue->id = $request->id;
-      $issue->district_id = $request->district_id;
-      $issue->healthfacility_id = $request->healthfacility_id;
-      $issue->description = $request->description;
-      $issue->created_by = $user_id;
-      $issue->updated_by = $user_id;
+      $issuediscussion = new Issuediscussion();
+      $issuediscussion->id = $request->id;
+      $issuediscussion->issue_id = $request->issue_id;
+      $issuediscussion->description = $request->description;
+      $issuediscussion->created_by = $user_id;
+      $issuediscussion->updated_by = $user_id;
 
-      if($issue->save()){
-        flash("Issue has been saved!","success");
-        return redirect('/issue');
+      if($issuediscussion->save()){
+        flash("Issue Discussion has been saved!","success");
+        return redirect('/issuediscussion');
       }
       else{
         flash("Something went wrong while processing your request! Try again later","error");
