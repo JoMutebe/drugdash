@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Datatables;
+use App\Stockitemchanges;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class Stockitems extends Controller
+class StockitemchangesController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -24,7 +27,12 @@ class Stockitems extends Controller
      */
     public function index()
     {
-        //
+        return view('stockitemchanges.index');
+    }
+    public function get_stockitemchanges(){
+      return Datatables::of(Stockitemchanges::query())->addColumn('action', function ($stockitemchanges) {
+                return '<a href="stockitemchanges/'.$stockitemchanges->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
     /**
@@ -34,7 +42,8 @@ class Stockitems extends Controller
      */
     public function create()
     {
-        //
+        $healthfacilities = DB::table('healthfacilities')->get();
+        return view('stockitemchanges.create',compact('healthfacilities'));
     }
 
     /**
@@ -45,7 +54,25 @@ class Stockitems extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user_id = Auth::user()->id;
+      $stockitemchanges = new Stockitemchanges();
+      $stockitemchanges->item_id = $request->item_id;
+      $stockitemchanges->healthfacility_id = $request->healthfacility_id;
+      $stockitemchanges->type = $request->type;
+      $stockitemchanges->occured_at = $request->occured_at;
+      $stockitemchanges->value = $request->value;
+      $stockitemchanges->created_by = $user_id;
+      $stockitemchanges->updated_by = $user_id;
+
+      if($stockitemchanges->save()){
+        flash("StockItem Change has been saved!","success");
+        return redirect('/stockitemchanges');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
+
+
     }
 
     /**

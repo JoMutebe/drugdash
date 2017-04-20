@@ -34,3 +34,12 @@ Route::get('/get_villages','VillageController@get_villages');
 
 Route::resource('healthfacilities','HealthfacilityController');
 Route::get('/get_healthfacilities','HealthfacilityController@get_healthfacilities');
+
+Route::resource('stockitemchanges','StockitemchangesController');
+Route::get('/get_stockitemchanges','StockitemchangesController@get_stockitemchanges');
+
+Route::resource('stockitems','StockitemsController');
+Route::get('/get_stockitems','StockitemsController@get_stockitems');
+
+Route::resource('issue','IssueController');
+Route::get('/get_issue','IssueController@get_issue');
