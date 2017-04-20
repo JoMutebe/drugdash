@@ -21,8 +21,8 @@ class IssueController extends Controller
     }
     public function get_issues(){
       return Datatables::of(Issue::query())->addColumn('action', function ($issue) {
-                return '<a href="issues/'.$issue->id.'"><i class="fa fa-eye"></i></a>';
-            })->editColumn('id', 'ID: {{$id}}')->make(true);
+                return '<a href="issue/'.$issue->id.'"><i class="fa fa-eye"></i></a>';
+            })->editColumn('id', '{{$id}}')->make(true);
     }
 
     /**
@@ -47,7 +47,6 @@ class IssueController extends Controller
     {
       $user_id = Auth::user()->id;
       $issue = new Issue();
-      $issue->id = $request->id;
       $issue->district_id = $request->district_id;
       $issue->healthfacility_id = $request->healthfacility_id;
       $issue->description = $request->description;

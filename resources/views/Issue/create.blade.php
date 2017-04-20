@@ -4,10 +4,7 @@
   <div class="container">
     <h3>Add New Issue</h3>
       {!! Form::open(['action' => 'IssueController@store']) !!}
-      <div class="form-group">
-          {!! Form::label('id', 'Issue ID') !!}
-          {!! Form::text('id', '',['class' => 'form-control']) !!}
-      </div>
+
     <div class="form-group">
           {!! Form::label('district_id', 'District ID ') !!}
           <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
