@@ -11,14 +11,14 @@
         </div>
 
         <div class="panel-body">
-          <table class="table table-bordered" id="issue">
+          <table class="table table-bordered" id="issues">
             <thead>
               <tr>
                 <th>Issue ID</th>
                 <th>District ID</th>
                 <th>Healthfacility ID</th>
                 <th>Description</th>
-                <th>Actions<th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -35,7 +35,7 @@
         serverSide: true,
         ajax: '{!! url('get_issues') !!}',
         columns: [
-          { data: 'id', name: 'issue_id' },
+          { data: 'id', name: 'id' },
           { data: 'district_id', name: 'district_id' },
           { data: 'healthfacility_id', name: 'healthfacility_id' },
           { data: 'description', name: 'description' },

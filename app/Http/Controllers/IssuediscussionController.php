@@ -19,10 +19,10 @@ class IssuediscussionController extends Controller
     {
         return view('issuediscussion.index');
     }
-    public function get_issues(){
+    public function get_issuediscussions(){
       return Datatables::of(Issuediscussion::query())->addColumn('action', function ($issuediscussion) {
                 return '<a href="issuediscussions/'.$issuediscussion->id.'"><i class="fa fa-eye"></i></a>';
-            })->editColumn('id', 'ID: {{$id}}')->make(true);
+            })->editColumn('id', '{{$id}}')->make(true);
     }
 
     /**
@@ -46,7 +46,6 @@ class IssuediscussionController extends Controller
     {
       $user_id = Auth::user()->id;
       $issuediscussion = new Issuediscussion();
-      $issuediscussion->id = $request->id;
       $issuediscussion->issue_id = $request->issue_id;
       $issuediscussion->description = $request->description;
       $issuediscussion->created_by = $user_id;

@@ -11,13 +11,13 @@
         </div>
 
         <div class="panel-body">
-          <table class="table table-bordered" id="issuediscussion">
+          <table class="table table-bordered" id="issuediscussions">
             <thead>
               <tr>
                 <th>Issue Discussion ID</th>
                 <th>Issue ID</th>
                 <th>Description</th>
-                <th>Actions<th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>
@@ -34,10 +34,10 @@
         serverSide: true,
         ajax: '{!! url('get_issuediscussions') !!}',
         columns: [
-          { data: 'id', name: 'issuediscussion_id' },
+          { data: 'id', name: 'id' },
           { data: 'issue_id', name: 'issue_id' },
           { data: 'description', name: 'description' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
+          { data: 'action', name: 'action', orderable: false, searchable: false}
         ]
       });
     });

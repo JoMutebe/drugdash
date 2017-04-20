@@ -42,7 +42,7 @@ Route::resource('stockitems','StockitemsController');
 Route::get('/get_stockitems','StockitemsController@get_stockitems');
 
 Route::resource('issue','IssueController');
-Route::get('/get_issue','IssueController@get_issue');
+Route::get('/get_issues','IssueController@get_issues');
 
 Route::resource('issuediscussion','IssuediscussionController');
-Route::get('/get_issuediscussion','IssuediscussionController@get_issue');
+Route::get('/get_issuediscussions','IssuediscussionController@get_issuediscussions');
