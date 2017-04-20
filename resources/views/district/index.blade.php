@@ -31,7 +31,7 @@
 
   <script>
   $(document).ready(function() {
-    $.noConflict();
+    // $.noConflict();
     $('#districts').DataTable({
         processing: true,
         serverSide: true,
