@@ -77,6 +77,29 @@
                 <li><a href="/issue"><i class="fa fa-laptop"></i> Issues</a></li>
                 <li><a href="/stockitems"><i class="fa fa-archive"></i> Stock</a></li>
             </div>
+            <div class="menu_section">
+              <h3> User Account</h3>
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-lock"></i>Administrator <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/users">Users</a></li>
+                    <li><a href="/logs">User Permissions</a></li>
+                    <li><a href="/logs">Access logs</a></li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-home"></i> My Account <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/districts">Profile</a></li>
+                    <li><a href="/counties">Change Password</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        Logout
+                    </a></li>
+
+                  </ul>
+                </li>
+            </div>
           </div>
           <!-- /sidebar menu -->
 
