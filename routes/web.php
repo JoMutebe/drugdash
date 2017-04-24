@@ -46,3 +46,6 @@ Route::get('/get_issues','IssueController@get_issues');
 
 Route::resource('issuediscussion','IssuediscussionController');
 Route::get('/get_issuediscussions','IssuediscussionController@get_issuediscussions');
+
+Route::get('/users','UserController@index');
+Route::get('/get_users','UserController@get_users');
