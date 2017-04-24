@@ -75,7 +75,7 @@
                 </li>
                 <li><a href="/healthfacilities"><i class="fa fa-hospital-o"></i> Health Facilities</a></li>
                 <li><a href="/issue"><i class="fa fa-laptop"></i> Issues</a></li>
-                <li><a href="/stock"><i class="fa fa-archive"></i> Stock</a></li>
+                <li><a href="/stockitems"><i class="fa fa-archive"></i> Stock</a></li>
             </div>
           </div>
           <!-- /sidebar menu -->
