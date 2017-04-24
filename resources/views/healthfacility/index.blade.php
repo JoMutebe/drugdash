@@ -28,25 +28,25 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#healthfacilities').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_healthfacilities') !!}',
-        columns: [
-          { data: 'name', name: 'name' },
-          { data: 'district_id', name: 'district_id' },
-          { data: 'parish_id', name: 'parish_id' },
-          { data: 'village_id', name: 'village_id' },
-          { data: 'level', name: 'level' },
-          { data: 'general_tel', name:'general_tel'},
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#healthfacilities').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_healthfacilities') !!}',
+          columns: [
+            { data: 'name', name: 'name' },
+            { data: 'district_id', name: 'district_id' },
+            { data: 'parish_id', name: 'parish_id' },
+            { data: 'village_id', name: 'village_id' },
+            { data: 'level', name: 'level' },
+            { data: 'general_tel', name:'general_tel'},
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush

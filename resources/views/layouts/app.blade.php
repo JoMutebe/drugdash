@@ -24,8 +24,8 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="//code.jquery.com/jquery.js"></script>
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+
 
     <script>
         window.Laravel = {!! json_encode([
@@ -230,9 +230,14 @@
     </div>
   </div>
   <script src="{{ asset('js/app.js')}}"></script>
+  <script src="//code.jquery.com/jquery.js"></script>
+  <!-- Data tables-->
+  <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
   <script src="{{ asset('js/bootstrap.js')}}"></script>
-
   <!-- Custom Theme Script -->
   <script src="{{ asset('js/gentelella.js')}}"></script>
+
+  <!--Load dynamic scripts-->
+  @stack('scripts')
 </body>
 </html>

@@ -25,22 +25,21 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#subcounties').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_subcounties') !!}',
-        columns: [
-          { data: 'name', name: 'name' },
-          { data: 'district_id', name: 'district_id' },
-          { data: 'county_id', name: 'county_id' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#subcounties').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_subcounties') !!}',
+          columns: [
+            { data: 'name', name: 'name' },
+            { data: 'district_id', name: 'district_id' },
+            { data: 'county_id', name: 'county_id' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush

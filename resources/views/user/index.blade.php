@@ -8,10 +8,7 @@
           <a class="btn btn-sm btn-primary pull-right"   title="Add district" href="{{action('DistrictController@create')}}">
               <i class="fa fa-plus"></i>
           </a>
-
-
         </div>
-
         <div class="panel-body">
           <table class="table table-bordered" id="users">
             <thead>
@@ -24,26 +21,25 @@
             </thead>
           </table>
 			  </div>
-
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict(true);
-    $('#users').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_users') !!}',
-        columns: [
-          { data: 'name', name: 'name' },
-          { data: 'email', name: 'email' },
-          { data: 'phone', name: 'phone' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-
-        ]
-      });
-    });
-  </script>
-
 @endsection
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#users').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_users') !!}',
+          columns: [
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'phone', name: 'phone' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+
+          ]
+        });
+    });
+</script>
+@endpush

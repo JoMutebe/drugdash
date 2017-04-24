@@ -26,23 +26,22 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#issues').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_issues') !!}',
-        columns: [
-          { data: 'id', name: 'id' },
-          { data: 'district_id', name: 'district_id' },
-          { data: 'healthfacility_id', name: 'healthfacility_id' },
-          { data: 'description', name: 'description' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#issues').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_issues') !!}',
+          columns: [
+            { data: 'id', name: 'id' },
+            { data: 'district_id', name: 'district_id' },
+            { data: 'healthfacility_id', name: 'healthfacility_id' },
+            { data: 'description', name: 'description' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush

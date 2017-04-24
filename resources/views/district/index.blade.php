@@ -28,24 +28,24 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict(true);
-    $('#districts').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_districts') !!}',
-        columns: [
-          { data: 'name', name: 'name' },
-          { data: 'region', name: 'region' },
-          { data: 'dho_name', name: 'dho_name' },
-          { data: 'dho_office_tel', name: 'dho_office_tel'},
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-
-        ]
-      });
-    });
-  </script>
-
 @endsection
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#districts').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_districts') !!}',
+          columns: [
+            { data: 'name', name: 'name' },
+            { data: 'region', name: 'region' },
+            { data: 'dho_name', name: 'dho_name' },
+            { data: 'dho_office_tel', name: 'dho_office_tel'},
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+
+          ]
+        });
+    });
+</script>
+@endpush

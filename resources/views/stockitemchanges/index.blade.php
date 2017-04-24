@@ -27,24 +27,23 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#stockitemchanges').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_stockitemchanges') !!}',
-        columns: [
-          { data: 'item_id', name: 'item_id' },
-          { data: 'healthfacility_id', name: 'healthfacility_id' },
-          { data: 'type', name: 'type' },
-          { data: 'occured_at', name: 'occured_at' },
-          { data: 'value', name: 'value' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#stockitemchanges').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_stockitemchanges') !!}',
+          columns: [
+            { data: 'item_id', name: 'item_id' },
+            { data: 'healthfacility_id', name: 'healthfacility_id' },
+            { data: 'type', name: 'type' },
+            { data: 'occured_at', name: 'occured_at' },
+            { data: 'value', name: 'value' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush

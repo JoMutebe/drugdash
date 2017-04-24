@@ -29,24 +29,24 @@
     </div>
   </div>
 
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#stockitems').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_stockitems') !!}',
-        columns: [
-          { data: 'common_name', name: 'common_name' },
-          { data: 'brand_name', name: 'brand_name' },
-          { data: 'code', name: 'code' },
-          { data: 'category', name: 'category' },
-          { data: 'unit_of_measure', name: 'unit_of_measure' },
-          { data: 'unit_price', name: 'unit_price' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#stockitems').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_stockitems') !!}',
+          columns: [
+            { data: 'common_name', name: 'common_name' },
+            { data: 'brand_name', name: 'brand_name' },
+            { data: 'code', name: 'code' },
+            { data: 'category', name: 'category' },
+            { data: 'unit_of_measure', name: 'unit_of_measure' },
+            { data: 'unit_price', name: 'unit_price' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush

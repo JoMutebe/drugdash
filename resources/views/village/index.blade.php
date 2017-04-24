@@ -27,24 +27,24 @@
 
     </div>
   </div>
-
-  <script>
-  $(document).ready(function() {
-    $.noConflict();
-    $('#villages').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! url('get_villages') !!}',
-        columns: [
-          { data: 'name', name: 'name' },
-          { data: 'district_id', name: 'district_id' },
-          { data: 'county_id', name: 'county_id' },
-          { data: 'subcounty_id', name: 'subcounty_id' },
-          { data: 'parish_id', name: 'parish_id' },
-          {data: 'action', name: 'action', orderable: false, searchable: false}
-        ]
-      });
-    });
-  </script>
-
 @endsection
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#villages').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_villages') !!}',
+          columns: [
+            { data: 'name', name: 'name' },
+            { data: 'district_id', name: 'district_id' },
+            { data: 'county_id', name: 'county_id' },
+            { data: 'subcounty_id', name: 'subcounty_id' },
+            { data: 'parish_id', name: 'parish_id' },
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+          ]
+        });
+    });
+</script>
+@endpush
