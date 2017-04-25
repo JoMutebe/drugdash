@@ -47,7 +47,7 @@
           <!-- menu profile quick info -->
           <div class="profile">
             <div class="profile_pic">
-              <img src="img/user.png" alt="..." class="img-circle profile_img">
+              <img src="/img/user.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
@@ -131,7 +131,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="img/user.png">{{ Auth::user()->name }}
+                  <img src="/img/user.png">{{ Auth::user()->name }}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -229,14 +229,15 @@
       <!-- /footer content -->
     </div>
   </div>
-  <script src="{{ asset('js/app.js')}}"></script>
-  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="{{ asset('js/jquery.min.js')}}"></script>
   <!-- Data tables-->
   <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
   <script src="{{ asset('js/bootstrap.js')}}"></script>
   <!-- Custom Theme Script -->
   <script src="{{ asset('js/gentelella.js')}}"></script>
 
+  <!-- Highcharts-->
+  <script src="{{ asset('js/highcharts.js')}}"></script>
   <!--Load dynamic scripts-->
   @stack('scripts')
 </body>

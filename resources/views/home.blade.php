@@ -6,7 +6,7 @@
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
       <div class="count">179</div>
-      <h3>New Sign ups</h3>
+      <h3>New Alerts</h3>
       <p>Lorem ipsum psdea itgum rixt.</p>
     </div>
   </div>
@@ -14,7 +14,7 @@
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-comments-o"></i></div>
       <div class="count">179</div>
-      <h3>New Sign ups</h3>
+      <h3>New Recent supplies</h3>
       <p>Lorem ipsum psdea itgum rixt.</p>
     </div>
   </div>
@@ -22,7 +22,7 @@
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
       <div class="count">179</div>
-      <h3>New Sign ups</h3>
+      <h3>Pending orders</h3>
       <p>Lorem ipsum psdea itgum rixt.</p>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="tile-stats">
       <div class="icon"><i class="fa fa-check-square-o"></i></div>
       <div class="count">179</div>
-      <h3>New Sign ups</h3>
+      <h3>Unresoloved Issues</h3>
       <p>Lorem ipsum psdea itgum rixt.</p>
     </div>
   </div>
@@ -43,15 +43,6 @@
         <h2>Recent Alerts <small>Sessions</small></h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings 1</a>
-              </li>
-              <li><a href="#">Settings 2</a>
-              </li>
-            </ul>
           </li>
           <li><a class="close-link"><i class="fa fa-close"></i></a>
           </li>
@@ -120,15 +111,6 @@
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings 1</a>
-              </li>
-              <li><a href="#">Settings 2</a>
-              </li>
-            </ul>
-          </li>
           <li><a class="close-link"><i class="fa fa-close"></i></a>
           </li>
         </ul>
@@ -153,6 +135,7 @@
           <div class="media-body">
             <a class="title" href="#">Item Two Title</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            
           </div>
         </article>
         <article class="media event">

@@ -84,7 +84,8 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
-        //
+        $district = District::findOrFail($id);
+        return view('district.view', compact('district'));
     }
 
     /**
