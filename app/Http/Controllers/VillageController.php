@@ -84,7 +84,8 @@ class VillageController extends Controller
      */
     public function show($id)
     {
-        //
+      $village = Village::findOrFail($id);
+      return view('village.view', compact('village'));
     }
 
     /**

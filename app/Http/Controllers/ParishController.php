@@ -83,7 +83,8 @@ class ParishController extends Controller
      */
     public function show($id)
     {
-        //
+      $parish = Parish::findOrFail($id);
+      return view('parish.view', compact('parish'));
     }
 
     /**

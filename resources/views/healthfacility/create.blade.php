@@ -101,7 +101,7 @@
               {!! Form::label('general_email', 'General Email') !!}
               {!! Form::text('general_email', '',['class' => 'form-control']) !!}
           </div>
-          
+
           <div class="form-group">
               {!! Form::label('incharge_name', 'Name of Incharge') !!}
               {!! Form::text('incharge_name', '',['class' => 'form-control']) !!}

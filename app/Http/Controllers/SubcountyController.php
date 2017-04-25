@@ -79,7 +79,8 @@ class SubcountyController extends Controller
      */
     public function show($id)
     {
-        //
+      $subcounty = Subcounty::findOrFail($id);
+      return view('subcounty.view', compact('subcounty'));
     }
 
     /**

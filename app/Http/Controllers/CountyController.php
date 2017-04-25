@@ -82,7 +82,8 @@ class CountyController extends Controller
      */
     public function show($id)
     {
-        //
+      $county = County::findOrFail($id);
+      return view('county.view', compact('county'));
     }
 
     /**

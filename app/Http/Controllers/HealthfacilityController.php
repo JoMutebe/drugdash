@@ -104,7 +104,8 @@ class HealthfacilityController extends Controller
      */
     public function show($id)
     {
-        //
+        $healthfacility = Healthfacility::findOrFail($id);
+        return view('healthfacility.view', compact('healthfacility'));
     }
 
     /**
