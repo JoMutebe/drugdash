@@ -89,7 +89,7 @@
                 </li>
                 <li><a><i class="fa fa-home"></i> My Account <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="/districts">Profile</a></li>
+                    <li><a href="/profile">Profile</a></li>
                     <li><a href="/counties">Change Password</a></li>
                     <li><a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
