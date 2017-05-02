@@ -1,153 +1,132 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container">
-    <h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3>
+<div class="container">
+  <h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="dashboard-widget-content">
+      <div class="col-md-8 hidden-small">
+        <h2 class="line_30">General Health Facility Information</h2>
+
+        <table class="countries_list">
+          <tbody>
+            <tr>
+              <td>Name of Incharge</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->incharge_name}}</td>
+            </tr>
+            <tr>
+              <td>Incharge Telephone</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->incharge_tel}}</td>
+            </tr>
+            <tr>
+              <td>Store Manager Name</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->store_manager_name}}</td>
+            </tr>
+            <tr>
+              <td>Store Manager Telephone</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->store_manager_tel}}</td>
+            </tr>
+            <tr>
+              <td>Bio Statistician Name</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->bio_stat_name}}</td>
+            </tr>
+            <tr>
+              <td>Bio Statistician Telephone</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->bio_stat_tel}}</td>
+            </tr>
+            <tr>
+              <td>Health Center Code</td>
+              <td class="fs15 fw700 text-right">{{$healthfacility->code}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="dashboard-widget-content">
-                        <div class="col-md-8 hidden-small">
-                          <h2 class="line_30">General Health Facility Information</h2>
 
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>Name of Incharge</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->incharge_name}}</td>
-                              </tr>
-                              <tr>
-                                <td>Incharge Telephone</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->incharge_tel}}</td>
-                              </tr>
-                              <tr>
-                                <td>Store Manager Name</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->store_manager_name}}</td>
-                              </tr>
-                              <tr>
-                                <td>Store Manager Telephone</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->store_manager_tel}}</td>
-                              </tr>
-                              <tr>
-                                <td>Bio Statistician Name</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->bio_stat_name}}</td>
-                              </tr>
-                              <tr>
-                                <td>Bio Statistician Telephone</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->bio_stat_tel}}</td>
-                              </tr>
-                              <tr>
-                                <td>Health Center Code</td>
-                                <td class="fs15 fw700 text-right">{{$healthfacility->code}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                     </div>
-                <div class="col-md-5">
-                  <div class="dashboard-widget-content"; style="vertical-align:top;">
-              <h2>Reported Issues </h2>
-                  <li>
-                    <div class="block">
-                      <div class="block_content">
-                        <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                        <div class="byline">
-                          <span>13 hours ago</span> by <a>Jane Smith</a>
-                        </div>
-                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="block">
-                      <div class="block_content">
-                        <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                        <div class="byline">
-                          <span>13 hours ago</span> by <a>Jane Smith</a>
-                        </div>
-                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="block">
-                      <div class="block_content">
-                        <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                        <div class="byline">
-                          <span>13 hours ago</span> by <a>Jane Smith</a>
-                        </div>
-                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="block">
-                      <div class="block_content">
-                        <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                        <div class="byline">
-                          <span>13 hours ago</span> by <a>Jane Smith</a>
-                        </div>
-                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-5" style="padding:0px;">
-              <div id='bar' class="panel body">
+  <div class="col-md-6">
+  <div class="panel-body">
+  <button class="btn btn-primary pull-right" id="issues" data-toggle="modal" data-target="#myModal" title="Add issue">
+  <i class="glyphicon glyphicon-plus pull-right"></i>
+</button>
+  <table class="table table-bordered" id="issues">
+      <thead>
+        <tr>
+          <th>Issue ID</th>
+          <th>Descriptiom</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
 
-              </div>
-            </div>
-          </div>
+         <!-- Modal content-->
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">Add Issue</h4>
+             </div>
+             <div class="modal-body">
+              {!! Form::open(['action' => 'IssueController@store']) !!}
+             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-   @endsection
-     @push('scripts')
-    <script>
+             <div class="form-group">
+                   {!! Form::label('district_id', 'District') !!}
+                   <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
+                   @foreach ($districts as $district)
+                   {
+                     <option value="{{ $district->id }}">{{ $district->name }}</option>
+                   }
+                   @endforeach
+                 </select>
+               </div>
+               <div class="form-group">
+                   {!! Form::label('healthfacility_id', 'Healthfacility ID') !!}
+                   <select class="form-control" name="healthfacility_id" id="healthfacility_id" data-parsley-required="true">
+                   @foreach ($healthfacilities as $healthfacility)
+                   {
+                     <option value="{{ $healthfacility->id }}">{{ $healthfacility->name }}</option>
+                   }
+                   @endforeach
+                 </select>
+               </div>
 
-      Highcharts.chart('bar', {
-        title: {
-            text: 'SRH Usage'
-        },
-        xAxis: {
-            categories: ['January', 'February', 'March', 'April', 'May']
-        },
+               <div class="form-group">
+                   {!! Form::label('description', 'Description') !!}
+                   {!! Form::textarea('description', '',['class' => 'form-control']) !!}
+               </div>
 
-        series: [{
-            type: 'column',
-            name: 'Condoms',
-            data: [3, 2, 1, 3, 4]
-        }, {
-            type: 'column',
-            name: 'Pills',
-            data: [2, 3, 5, 7, 6]
-        }, {
-            type: 'column',
-            name: 'IUDs',
-            data: [4, 3, 3, 9, 0]
-        }, {
-            type: 'spline',
-            name: 'Average',
-            data: [3, 2.67, 3, 6.33, 3.33],
-            marker: {
-                lineWidth: 2,
-                lineColor: Highcharts.getOptions().colors[3],
-                fillColor: 'white'
-            }
-        }]
-      });
-  </script>
+                 <div class="form-group">
+                     <button type="submit" class="btn btn-primary">
+                         Submit
+                     </button>
+                 </div>
+                 {!! Form::close() !!}
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+         </div>
+
+     </div>
+</div>
+@endsection
+@push('scripts')
+<script>
+    jQuery(document).ready(function ($) {
+      $('#issues').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: '{!! url('get_issues') !!}',
+          columns: [
+            { data: 'id', name: 'id' },
+            { data: 'description', name: 'dho_name' },
+          ]
+        });
+    });
+</script>
 @endpush

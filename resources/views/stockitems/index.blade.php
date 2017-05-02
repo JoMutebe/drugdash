@@ -4,7 +4,7 @@
   <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-          <strong>Stock Items</strong>
+          <strong>EMS List</strong>
           <a class="btn btn-sm btn-primary pull-right"   title="Add stockitem" href="{{action('StockitemsController@create')}}">
               <i class="fa fa-plus"></i>
           </a>
@@ -19,8 +19,8 @@
                 <th>Code</th>
                 <th>Category</th>
                 <th>Unit Of Measure</th>
-                <th>Unit Price<th>
-                <th>Actions<th>
+                <th>Unit Price</th>
+                <th>Actions</th>
               </tr>
             </thead>
           </table>

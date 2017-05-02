@@ -6,7 +6,7 @@
       {!! Form::open(['action' => 'IssueController@store']) !!}
 
     <div class="form-group">
-          {!! Form::label('district_id', 'District ID ') !!}
+          {!! Form::label('district_id', 'District') !!}
           <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
           @foreach ($districts as $district)
           {
@@ -25,6 +25,7 @@
           @endforeach
         </select>
       </div>
+      
       <div class="form-group">
           {!! Form::label('description', 'Description') !!}
           {!! Form::textarea('description', '',['class' => 'form-control']) !!}
