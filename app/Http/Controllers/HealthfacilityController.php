@@ -104,8 +104,9 @@ class HealthfacilityController extends Controller
      */
     public function show($id)
     {
+        $districts = DB::table('districts')->get();
         $healthfacility = Healthfacility::findOrFail($id);
-        return view('healthfacility.view', compact('healthfacility'));
+        return view('healthfacility.view', compact('healthfacility','districts'));
     }
 
     /**

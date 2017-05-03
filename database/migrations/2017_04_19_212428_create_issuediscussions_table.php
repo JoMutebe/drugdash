@@ -14,12 +14,15 @@ class CreateIssuediscussionsTable extends Migration
     public function up()
     {
         Schema::create('issuediscussions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('issue_id');
+            $table->integer('issue_id')->unsigned();
             $table->text('description');
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
             $table->timestamps();
+            $table->foreign('issue_id')->references('id')->on('issues')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

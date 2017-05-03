@@ -14,15 +14,20 @@ class CreateItemchangesTable extends Migration
     public function up()
     {
         Schema::create('stockitemchanges', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('item_id')->unsigned();
+            $table->integer('stockitem_id')->unsigned();
             $table->integer('healthfacility_id')->unsigned();
             $table->string('type'); //whether it is an increment or a decreament
             $table->date('occured_at'); //date when increment or decrement happened
             $table->decimal('value',10,4); //the value by which the item was incremented or decremented....stored as string so we can retrieve and manipulate accordigl
+            $table->decimal('balance',10,4);
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
             $table->timestamps();
+            $table->foreign('stockitem_id')->references('id')->on('stockitems')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('healthfacility_id')->references('id')->on('healthfacilities')->onDelete('cascade')->onUpdate('cascade');
+            
         });
     }
 

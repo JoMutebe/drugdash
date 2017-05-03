@@ -2,12 +2,15 @@
 
 @section('content')
 <div class="container">
-  <h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3>
+  <div class="row">
+    <div class="col-md-12"><h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3></div>
+    
+  </div>  
 </div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="dashboard-widget-content">
-      <div class="col-md-8 hidden-small">
+<div class="container">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
         <h2 class="line_30">General Health Facility Information</h2>
 
         <table class="countries_list">
@@ -45,25 +48,67 @@
       </div>
     </div>
   </div>
+  <div class="col-md-8">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Drug Stock Levels
+        <button class="btn btn-default btn-sm pull-right" id="addResponse" data-toggle="modal" data-target="#supplyModal" title="New supply">
+              <i class="glyphicon glyphicon-plus pull-right"></i>
+          </button>
+          
 
+      </div>
+      <div class="panel-body">
+        <table class="table table-stripped" id="supply-table">
+          <thead>
+            <tr>
+              <th>Drug/supply</th>
+              <th>Type</th>
+              <th>Value</th>
+              <th>Last update</th>              
+              <th>Unit of measure</th>
+              <th>Balance at hand</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<div class="container">
   <div class="col-md-6">
-  <div class="panel-body">
-  <button class="btn btn-primary pull-right" id="issues" data-toggle="modal" data-target="#myModal" title="Add issue">
-  <i class="glyphicon glyphicon-plus pull-right"></i>
-</button>
-  <table class="table table-bordered" id="issues">
-      <thead>
-        <tr>
-          <th>Issue ID</th>
-          <th>Descriptiom</th>
-        </tr>
-      </thead>
-    </table>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        Health center issues
+        <button class="btn btn-default btn-sm pull-right" id="newIssue" data-toggle="modal" data-target="#myModal" title="Report new issue">
+            <i class="glyphicon glyphicon-plus pull-right"></i>
+        </button>          
+      </div>
+      <div class="panel-body"> 
+        <table class="table table-stripped" id="issues-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Urgency</th>
+              <th>Raised by</th>
+              <th>Date raised</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Issues modal-->
 <div id="myModal" class="modal fade" role="dialog">
      <div class="modal-dialog">
-
          <!-- Modal content-->
          <div class="modal-content">
              <div class="modal-header">
@@ -71,50 +116,50 @@
                  <h4 class="modal-title">Add Issue</h4>
              </div>
              <div class="modal-body">
+
               {!! Form::open(['action' => 'IssueController@store']) !!}
-             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-             <div class="form-group">
-                   {!! Form::label('district_id', 'District') !!}
-                   <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
-                   @foreach ($districts as $district)
-                   {
-                     <option value="{{ $district->id }}">{{ $district->name }}</option>
-                   }
-                   @endforeach
-                 </select>
-               </div>
-               <div class="form-group">
-                   {!! Form::label('healthfacility_id', 'Healthfacility ID') !!}
-                   <select class="form-control" name="healthfacility_id" id="healthfacility_id" data-parsley-required="true">
-                   @foreach ($healthfacilities as $healthfacility)
-                   {
-                     <option value="{{ $healthfacility->id }}">{{ $healthfacility->name }}</option>
-                   }
-                   @endforeach
-                 </select>
-               </div>
+                <input type="hidden" name="healthfacility_id" id="healthfacility_id" value="{{ $healthfacility->id }}">
 
-               <div class="form-group">
-                   {!! Form::label('description', 'Description') !!}
-                   {!! Form::textarea('description', '',['class' => 'form-control']) !!}
-               </div>
+                <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
 
-                 <div class="form-group">
-                     <button type="submit" class="btn btn-primary">
-                         Submit
-                     </button>
-                 </div>
-                 {!! Form::close() !!}
-             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="hidden" name="status" id="status" value="Open">
+
+                <div class="form-group">
+                  {!! Form::label('urgency','Urgency') !!}
+                  <select class="form-control" id="category" name="category">
+                    <option value="education-and-skills-development">Very High</option>
+                    <option value="health-and-wellbeing">High</option>
+                    <option value="economic-development">Normal </option>
+                    <option value="others">Low </option>
+                  </select>
+                </div>
+
+                                           
+
+                <div class="form-group">
+                  {!! Form::label('description', 'Description') !!}
+                  {!! Form::textarea('description', '',['class' => 'form-control']) !!}
+                </div>
+ 
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              {!! Form::close() !!}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
              </div>
          </div>
-
      </div>
 </div>
+
+<!-- Supplies modal-->
 @endsection
+
 @push('scripts')
 <script>
     jQuery(document).ready(function ($) {

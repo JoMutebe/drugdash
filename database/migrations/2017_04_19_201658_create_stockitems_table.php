@@ -14,7 +14,8 @@ class CreateStockitemsTable extends Migration
     public function up()
     {
         Schema::create('stockitems', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'InnoDB';            
+            $table->increments('id');
             $table->string('common_name');
             $table->string('brand_name');
             $table->string('code');
@@ -23,7 +24,6 @@ class CreateStockitemsTable extends Migration
             $table->double('unit_price',12,4);
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
-            $table->increments('id');
             $table->timestamps();
         });
     }
