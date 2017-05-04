@@ -4,8 +4,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12"><h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3></div>
-    
-  </div>  
+
+  </div>
 </div>
 <div class="container">
   <div class="col-md-4">
@@ -55,7 +55,7 @@
         <button class="btn btn-default btn-sm pull-right" id="addResponse" data-toggle="modal" data-target="#supplyModal" title="New supply">
               <i class="glyphicon glyphicon-plus pull-right"></i>
           </button>
-          
+
 
       </div>
       <div class="panel-body">
@@ -65,7 +65,7 @@
               <th>Drug/supply</th>
               <th>Type</th>
               <th>Value</th>
-              <th>Last update</th>              
+              <th>Last update</th>
               <th>Unit of measure</th>
               <th>Balance at hand</th>
               <th>Actions</th>
@@ -74,11 +74,54 @@
         </table>
       </div>
     </div>
-    
-  </div>
-  
-</div>
 
+  </div>
+
+</div>
+<!-- Supply modal-->
+<div id="supplyModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">Add New Supply </h4>
+             </div>
+             <div class="modal-body">
+             {!! Form::open(['action' => 'StockitemchangesController@store']) !!}
+          <div class="form-group">
+          {!! Form::label('item_id', 'Item ID') !!}
+          {!! Form::text('item_id', '',['class' => 'form-control']) !!}
+          </div>
+          <div class="form-group">
+          {!! Form::label('type', 'Type') !!}
+          <select class="form-control" id="category" name="category">
+              <option value="education-and-skills-development">Increment</option>
+              <option value="health-and-wellbeing">Decrement</option>
+         </select>
+        
+         </div>
+         <div class="form-group">
+         {!! Form::label('occured_at', 'Occured at') !!}
+         {!! Form::text('occured_at', '',['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+        {!! Form::label('value', 'Value') !!}
+        {!! Form::text('value', '',['class' => 'form-control']) !!}
+        </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              {!! Form::close() !!}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+         </div>
+     </div>
+</div>
 <div class="container">
   <div class="col-md-6">
     <div class="panel panel-danger">
@@ -86,9 +129,9 @@
         Health center issues
         <button class="btn btn-default btn-sm pull-right" id="newIssue" data-toggle="modal" data-target="#myModal" title="Report new issue">
             <i class="glyphicon glyphicon-plus pull-right"></i>
-        </button>          
+        </button>
       </div>
-      <div class="panel-body"> 
+      <div class="panel-body">
         <table class="table table-stripped" id="issues-table">
           <thead>
             <tr>
@@ -136,13 +179,13 @@
                   </select>
                 </div>
 
-                                           
+
 
                 <div class="form-group">
                   {!! Form::label('description', 'Description') !!}
                   {!! Form::textarea('description', '',['class' => 'form-control']) !!}
                 </div>
- 
+
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">
                     Submit
