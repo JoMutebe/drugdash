@@ -84,7 +84,7 @@
     <div class="panel panel-danger">
       <div class="panel-heading">
         Health center issues
-        <button class="btn btn-default btn-sm pull-right" id="newIssue" data-toggle="modal" data-target="#myModal" title="Report new issue">
+        <button class="btn btn-default btn-sm pull-right" id="newIssue" data-toggle="modal" data-target="#issueModal" title="Report new issue">
             <i class="glyphicon glyphicon-plus pull-right"></i>
         </button>          
       </div>
@@ -107,7 +107,7 @@
 </div>
 
 <!-- Issues modal-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="issueModal" class="modal fade" role="dialog">
      <div class="modal-dialog">
          <!-- Modal content-->
          <div class="modal-content">
@@ -158,6 +158,55 @@
 </div>
 
 <!-- Supplies modal-->
+<div id="supplyModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title">Add Supply/Usage information`</h4>
+             </div>
+             <div class="modal-body">
+
+              {!! Form::open(['action' => 'IssueController@store']) !!}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <input type="hidden" name="healthfacility_id" id="healthfacility_id" value="{{ $healthfacility->id }}">
+
+                <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
+
+                <input type="hidden" name="status" id="status" value="Open">
+
+                <div class="form-group">
+                  {!! Form::label('urgency','Urgency') !!}
+                  <select class="form-control" id="category" name="category">
+                    <option value="education-and-skills-development">Very High</option>
+                    <option value="health-and-wellbeing">High</option>
+                    <option value="economic-development">Normal </option>
+                    <option value="others">Low </option>
+                  </select>
+                </div>
+
+                                           
+
+                <div class="form-group">
+                  {!! Form::label('description', 'Description') !!}
+                  {!! Form::textarea('description', '',['class' => 'form-control']) !!}
+                </div>
+ 
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">
+                    Submit
+                  </button>
+                </div>
+              {!! Form::close() !!}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+         </div>
+     </div>
+</div>
 @endsection
 
 @push('scripts')
