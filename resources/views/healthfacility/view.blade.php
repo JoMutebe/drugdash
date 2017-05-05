@@ -89,6 +89,11 @@
              </div>
              <div class="modal-body">
              {!! Form::open(['action' => 'StockitemchangesController@store']) !!}
+             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+            <input type="hidden" name="healthfacility_id" id="healthfacility_id" value="{{ $healthfacility->id }}">
+
+            <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
           <div class="form-group">
           {!! Form::label('item_id', 'Item ID') !!}
           {!! Form::text('item_id', '',['class' => 'form-control']) !!}
