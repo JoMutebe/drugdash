@@ -51,3 +51,5 @@ Route::get('/users','UserController@index');
 Route::get('/get_users','UserController@get_users');
 
 Route::get('/profile','ProfileController@index');
+
+Route::resource('orders','OrderController');
