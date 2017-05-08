@@ -95,8 +95,14 @@
 
             <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
           <div class="form-group">
-          {!! Form::label('item_id', 'Item ID') !!}
-          {!! Form::text('item_id', '',['class' => 'form-control']) !!}
+          {!! Form::label('item_id', 'Supply item') !!}
+          <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
+            @foreach ($supplies as $supply)
+            {
+              <option value="{{ $supply->id }}">{{ $supply->common_name }}</option>
+            }
+            @endforeach
+        </select>
           </div>
           <div class="form-group">
           {!! Form::label('type', 'Type') !!}

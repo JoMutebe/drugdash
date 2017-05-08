@@ -106,7 +106,8 @@ class HealthfacilityController extends Controller
     {
         $districts = DB::table('districts')->get();
         $healthfacility = Healthfacility::findOrFail($id);
-        return view('healthfacility.view', compact('healthfacility','districts'));
+        $supplies = DB::table('stockitems')->get();
+        return view('healthfacility.view', compact('healthfacility','districts','supplies'));
     }
 
     /**
