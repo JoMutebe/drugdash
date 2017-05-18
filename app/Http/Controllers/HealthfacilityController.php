@@ -107,7 +107,13 @@ class HealthfacilityController extends Controller
         $districts = DB::table('districts')->get();
         $healthfacility = Healthfacility::findOrFail($id);
         $supplies = DB::table('stockitems')->get();
-        return view('healthfacility.view', compact('healthfacility','districts','supplies'));
+        $hcf_supplies = DB::table('stockitemchanges')->where([
+          ['healthfacility_id','=',$id]
+        ])->orderBy('id','DESC')->paginate(2);
+        $hcf_issues = DB::table('issues')->where([
+          ['healthfacility_id','=', $id],
+        ])->orderBy('id','DESC')->paginate(5);
+        return view('healthfacility.view', compact('healthfacility','districts','supplies','hcf_supplies','hcf_issues'));
     }
 
     /**
@@ -143,4 +149,8 @@ class HealthfacilityController extends Controller
     {
         //
     }
+
+    public function getHcfSupplies($id){}
+
+    public function getHcfIssues($id){}
 }

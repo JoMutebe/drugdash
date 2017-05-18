@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Auth;
 use Datatables;
 use App\Issue;
@@ -46,10 +47,13 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
+      Log::info($request);
       $user_id = Auth::user()->id;
       $issue = new Issue();
       $issue->district_id = $request->district_id;
       $issue->healthfacility_id = $request->healthfacility_id;
+      $issue->status = $request->status;
+      $issue->urgency = $request->urgency;
       $issue->description = $request->description;
       $issue->created_by = $user_id;
       $issue->updated_by = $user_id;

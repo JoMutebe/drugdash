@@ -23,6 +23,10 @@
 
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
+    
+1
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
     <!-- Scripts -->
 
 

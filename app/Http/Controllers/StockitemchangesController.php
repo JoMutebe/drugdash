@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Auth;
 use Datatables;
 use App\Stockitemchanges;
@@ -54,9 +55,10 @@ class StockitemchangesController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info($request);
       $user_id = Auth::user()->id;
       $stockitemchanges = new Stockitemchanges();
-      $stockitemchanges->item_id = $request->item_id;
+      $stockitemchanges->stockitem_id = $request->stockitem_id;
       $stockitemchanges->healthfacility_id = $request->healthfacility_id;
       $stockitemchanges->type = $request->type;
       $stockitemchanges->occured_at = $request->occured_at;

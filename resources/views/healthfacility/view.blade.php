@@ -65,14 +65,27 @@
               <th>Drug/supply</th>
               <th>Type</th>
               <th>Value</th>
-              <th>Last update</th>
               <th>Unit of measure</th>
               <th>Balance at hand</th>
+              <th>Created at</th>
               <th>Actions</th>
             </tr>
           </thead>
+          <tbody>
+            @foreach($hcf_supplies as $item)
+            <tr>
+              <td>{{$item->stockitem_id}}</td>
+              <td>{{$item->type}}</td>
+              <td>{{$item->value}}</td>
+              <td></td>
+              <td>{{$item->balance}}</td>
+              <td>{{$item->created_at}}</td>
+              <td></td>
+            </tr>
+            @endforeach
         </table>
       </div>
+      <div class="panel-footer">{{ $hcf_supplies->links() }}</div>
     </div>
 
   </div>
@@ -95,8 +108,8 @@
 
             <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
           <div class="form-group">
-          {!! Form::label('item_id', 'Supply item') !!}
-          <select class="form-control" name="district_id" id="district_id" data-parsley-required="true">
+          {!! Form::label('stockitem_id', 'Supply item') !!}
+          <select class="form-control" name="stockitem_id" id="stockitem_id" data-parsley-required="true">
             @foreach ($supplies as $supply)
             {
               <option value="{{ $supply->id }}">{{ $supply->common_name }}</option>
@@ -106,15 +119,15 @@
           </div>
           <div class="form-group">
           {!! Form::label('type', 'Type') !!}
-          <select class="form-control" id="category" name="category">
-              <option value="education-and-skills-development">Increment</option>
-              <option value="health-and-wellbeing">Decrement</option>
+          <select class="form-control" id="type" name="type">
+              <option value="Increment">Increment</option>
+              <option value="Decrement">Decrement</option>
          </select>
         
          </div>
          <div class="form-group">
          {!! Form::label('occured_at', 'Occured at') !!}
-         {!! Form::text('occured_at', '',['class' => 'form-control']) !!}
+         {!! Form::date('occured_at', \Carbon\Carbon::now(),['class' => 'form-control','id'=>'occured_at']) !!}
         </div>
         <div class="form-group">
         {!! Form::label('value', 'Value') !!}
@@ -154,8 +167,23 @@
               <th>Actions</th>
             </tr>
           </thead>
+          <tbody>
+            @foreach($hcf_issues as $item)
+            <tr>
+              <td>{{$item->description}}</td>
+              <td>{{$item->status}}</td>
+              <td>{{$item->urgency}}</td>
+              <td>{{$item->created_by}}</td>
+              <td>{{$item->created_at}}</td>
+              <td></td>
+            </tr>
+            @endforeach
+
+          </tbody>
+          
         </table>
       </div>
+      <div class="panel-footer">{{ $hcf_issues->links() }}</div>
     </div>
   </div>
 </div>
@@ -182,11 +210,11 @@
 
                 <div class="form-group">
                   {!! Form::label('urgency','Urgency') !!}
-                  <select class="form-control" id="category" name="category">
-                    <option value="education-and-skills-development">Very High</option>
-                    <option value="health-and-wellbeing">High</option>
-                    <option value="economic-development">Normal </option>
-                    <option value="others">Low </option>
+                  <select class="form-control" id="urgency" name="urgency">
+                    <option value="Very High">Very High</option>
+                    <option value="High">High</option>
+                    <option value="Normal">Normal </option>
+                    <option value="Low">Low </option>
                   </select>
                 </div>
 
@@ -211,56 +239,7 @@
      </div>
 </div>
 
-<!-- Supplies modal-->
-<div id="supplyModal" class="modal fade" role="dialog">
-     <div class="modal-dialog">
-         <!-- Modal content-->
-         <div class="modal-content">
-             <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 <h4 class="modal-title">Add Supply/Usage information`</h4>
-             </div>
-             <div class="modal-body">
 
-              {!! Form::open(['action' => 'IssueController@store']) !!}
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                <input type="hidden" name="healthfacility_id" id="healthfacility_id" value="{{ $healthfacility->id }}">
-
-                <input type="hidden" name="district_id" id="district_id" value="{{ $healthfacility->district_id }}">
-
-                <input type="hidden" name="status" id="status" value="Open">
-
-                <div class="form-group">
-                  {!! Form::label('urgency','Urgency') !!}
-                  <select class="form-control" id="category" name="category">
-                    <option value="education-and-skills-development">Very High</option>
-                    <option value="health-and-wellbeing">High</option>
-                    <option value="economic-development">Normal </option>
-                    <option value="others">Low </option>
-                  </select>
-                </div>
-
-                                           
-
-                <div class="form-group">
-                  {!! Form::label('description', 'Description') !!}
-                  {!! Form::textarea('description', '',['class' => 'form-control']) !!}
-                </div>
- 
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">
-                    Submit
-                  </button>
-                </div>
-              {!! Form::close() !!}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-             </div>
-         </div>
-     </div>
-</div>
 @endsection
 
 @push('scripts')
@@ -274,7 +253,10 @@
             { data: 'id', name: 'id' },
             { data: 'description', name: 'dho_name' },
           ]
-        });
-    });
+        });     
+    });  
+
 </script>
+
+
 @endpush
