@@ -19,6 +19,7 @@ class IssueController extends Controller
     {
         return view('issue.index');
     }
+    
     public function get_issues(){
       return Datatables::of(Issue::query())->addColumn('action', function ($issue) {
                 return '<a href="issue/'.$issue->id.'"><i class="fa fa-eye"></i></a>';
