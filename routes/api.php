@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => ['auth:api','cors']], function () {
 	Route::get('test', function () {
         return [];
     });  
@@ -25,3 +25,4 @@ Route::group(['middleware' => 'auth:api'], function () {
 });
 
 Route::post('get_token','Api\TokenController@get_token');
+Route::post('create_account','Api\TokenController@create_account');

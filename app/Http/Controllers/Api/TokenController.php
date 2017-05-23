@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Api\Responseobject;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TokenController extends Controller
 {
@@ -32,6 +33,30 @@ class TokenController extends Controller
 			);
 	}
 
-	
+	public function create_account(Request $request){
+		$data = json_decode(file_get_contents('php://input'));
+		$response = new Responseobject;		
+		$array_data = (array)$data;
 
+		$validator = Validator::make($array_data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'phone' => 'required|string|min:12|max:12|unique:users',
+        ]);
+
+		if($validator->fails()){
+			$response->status = $response::status_failed;
+			$response->code = $response::code_failed;
+			foreach ($validator->errors()->getMessages() as $item) {
+				array_push($response->messages, $item);
+			}	
+		}
+		else{
+			
+		}
+		return Response::json(
+				$response
+			);
+	}
 }
