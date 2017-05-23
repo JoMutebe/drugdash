@@ -65,10 +65,10 @@ class StockitemchangesController extends Controller
       $stockitemchanges->value = $request->value;
       $stockitemchanges->created_by = $user_id;
       $stockitemchanges->updated_by = $user_id;
-
+      $stockitemchanges->balance = $request->value;
       if($stockitemchanges->save()){
         flash("StockItem Change has been saved!","success");
-        return redirect('/stockitemchanges');
+        return redirect('/healthfacilities/'.$request->healthfacility_id);
       }
       else{
         flash("Something went wrong while processing your request! Try again later","error");

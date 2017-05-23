@@ -31,9 +31,11 @@ class HealthfacilityController extends Controller
     }
 
     public function get_healthfacilities(){
-      return Datatables::of(Healthfacility::query())->addColumn('action', function ($healthfacility) {
+      return Datatables::of(Healthfacility::query())->addColumn('action', 
+          function ($healthfacility) {
                 return '<a href="healthfacilities/'.$healthfacility->id.'"><i class="fa fa-eye"></i></a>';
-            })->editColumn('id', 'ID: {{$id}}')->make(true);
+            })
+          ->editColumn('id', 'ID: {{$id}}')->make(true);
     }
 
     /**
@@ -87,7 +89,7 @@ class HealthfacilityController extends Controller
 
       if($healthfacility->save()){
         flash("Healthfacility has been saved!","success");
-        return redirect('/healthfacilities');
+        return redirect('/healthfacilities/'.$request->healthfacility_id);
       }
       else{
         flash("Something went wrong while processing your request! Try again later","error");
@@ -109,7 +111,7 @@ class HealthfacilityController extends Controller
         $supplies = DB::table('stockitems')->get();
         $hcf_supplies = DB::table('stockitemchanges')->where([
           ['healthfacility_id','=',$id]
-        ])->orderBy('id','DESC')->paginate(2);
+        ])->orderBy('id','DESC')->paginate(5);
         $hcf_issues = DB::table('issues')->where([
           ['healthfacility_id','=', $id],
         ])->orderBy('id','DESC')->paginate(5);

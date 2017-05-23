@@ -60,7 +60,7 @@ class IssueController extends Controller
 
       if($issue->save()){
         flash("Issue has been saved!","success");
-        return redirect('/issue');
+        return redirect('/healthfacility_id');
       }
       else{
         flash("Something went wrong while processing your request! Try again later","error");
