@@ -20,7 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:api','cors']], function () {
 	Route::get('test', function () {
         return [];
-    });  
+    });
+
+    Route::post('get_medicines','Api\ApiController@get_medicines');
+    Route::post('get_healthcenters','Api\ApiController@get_healthcenters');
+    Route::post('get_healthcenter','Api\ApiController@get_heatlcenter');
+    Route::post('get_district_information'); 
     
 });
 

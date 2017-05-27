@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
-use App\Http\Controllers\Api\Responseobject;
-use Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Api\Responseobject;
+
 
 class TokenController extends Controller
 {
@@ -41,7 +43,7 @@ class TokenController extends Controller
 		$validator = Validator::make($array_data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
             'phone' => 'required|string|min:12|max:12|unique:users',
         ]);
 
@@ -53,7 +55,19 @@ class TokenController extends Controller
 			}	
 		}
 		else{
-			
+			$api_token = str_random(60);
+			$user = new User();
+			$user->api_token = $api_token;
+			$user->name = $data->name;
+			$user->email = $data->email;
+			$user->phone = $data->phone;
+			$user->password = bcrypt($data->password);
+
+			if($user->save()){
+				$response->status = $response::status_ok;
+				$response->code = $response::code_ok;
+				$response->result = $user;
+			}			
 		}
 		return Response::json(
 				$response
