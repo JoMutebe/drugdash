@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<table class = "table">
-   <caption>Health Center Orders</caption>
+   <caption>Overall District ARV Orders</caption>
    
    <thead>
       <tr>

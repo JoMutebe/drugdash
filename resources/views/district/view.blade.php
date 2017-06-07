@@ -91,7 +91,7 @@
         text: 'SRH Usage'
     },
     xAxis: {
-        categories: ['HC Name', 'HC Name 2', 'HC Name 3', 'HC Name 4', 'HC Name 5']
+        categories: ['Kabarwa HC', 'Bukedea HC IV', 'Malera HC', 'Kacumbara HC', 'HC Name 5']
     },
 
     series: [{
