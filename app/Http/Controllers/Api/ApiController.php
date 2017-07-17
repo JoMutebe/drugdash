@@ -60,8 +60,8 @@ class ApiController extends Controller
 		$response = new ResponseObject;
 		$change = new Stockitemchanges();
 		//$change->district_id = 1;
-		$change->created_by = 1;
-		$change->updated_by = 1;
+		$change->created_by = $data->created_by;
+		$change->updated_by = $data->updated_by;
 		$change->healthfacility_id = $data->facility;
 		$change->stockitem_id = $data->item;
 		$change->occured_at = $data->occured_at;
@@ -88,7 +88,7 @@ class ApiController extends Controller
 		$response = new Responseobject;
 		$user_id = 1;
 		$issue = new Issue();
-      	$issue->district_id = 1;
+      	$issue->district_id = $request->district_id;
       	$issue->healthfacility_id = $request->facility;
       	$issue->status = 'Open';
       	$issue->urgency = $request->urgency;
@@ -109,12 +109,18 @@ class ApiController extends Controller
 
       	return Response::json(
 				$response
-			);
-		
+			);		
 	}
 
 	public function make_order(){
-
+		//incase people make orders
 	}
 
+	public function report_app_open(){
+		//we want to track how oftern people use the application
+	}
+
+	public function retrieve_issues(){
+		//All devices in a given district should be able to see issues reported by one of them
+	}
 }
