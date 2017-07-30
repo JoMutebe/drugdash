@@ -8,6 +8,7 @@ use Auth;
 use App\Stockitems;
 use App\Stockitemchanges;
 use App\Issue;
+use App\Healthfacility;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
@@ -21,7 +22,7 @@ class ApiController extends Controller
 		$response = new ResponseObject;
 		$response->code = $response::code_ok;
 		$response->status = $response::status_ok;
-		$response->result = DB::table('Stockitems')->orderBy('common_name')->get();
+		$response->result = DB::table('stockitems')->orderBy('common_name')->get();
 		return Response::json(
 				$response
 			);
@@ -122,5 +123,42 @@ class ApiController extends Controller
 
 	public function retrieve_issues(){
 		//All devices in a given district should be able to see issues reported by one of them
+	}
+
+	public function activate(Request $request){
+		$validator = Validator::make($request->json()->all(),[
+				'code' => 'required|string|min:5'
+			]);
+		$response = new ResponseObject;
+		if($validator->fails()){
+			$response->status = $response::status_failed;
+			$response->code = $response::code_failed;
+			foreach ($validator->errors()->getMessages() as $item) {
+				array_push($response->messages,$item);
+			}
+			return Response::json($response);
+		}
+		else{
+			$data = $request->json()->all();
+			$healthfacility = Healthfacility::where(['activation_code' => $data["code"] ])->first();
+
+			if(count($healthfacility) < 1){
+				$response->status = $response::status_failed;
+				$response->code = $response::code_failed;
+				array_push($response->messages,'Invalid activation code. Please try again');
+				return Response::json($response);
+			}
+			$response->status = $response::status_ok;
+			$response->code = $response::code_ok;
+			$facility = [
+				'incharge' => $healthfacility->incharge_name,
+				'hcname' => $healthfacility->name,
+				'hcid' => $healthfacility->id,
+				'contact' => $healthfacility->general_tel
+			];
+			$response->result = $facility;
+
+			return Response::json($response);
+		}
 	}
 }

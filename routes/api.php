@@ -31,3 +31,4 @@ Route::post('get_token','Api\TokenController@get_token');
 Route::post('create_account','Api\TokenController@create_account');
 Route::post('create_issue','Api\ApiController@report_issue');
 Route::post('create_stockchange','Api\ApiController@report_on_item');
+Route::post('activate','Api\ApiController@activate');

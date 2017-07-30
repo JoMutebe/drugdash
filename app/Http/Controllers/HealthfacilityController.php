@@ -86,6 +86,7 @@ class HealthfacilityController extends Controller
       $healthfacility->village_id=$request->village_id;
       $healthfacility->created_by = $user_id;
       $healthfacility->updated_by = $user_id;
+      $healthfacility->activation_code = strtoupper(str_random(8));
 
       if($healthfacility->save()){
         flash("Healthfacility has been saved!","success");

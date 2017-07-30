@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api\Responseobject;
+use Log;
 
 
 class TokenController extends Controller
@@ -36,11 +37,9 @@ class TokenController extends Controller
 	}
 
 	public function create_account(Request $request){
-		$data = json_decode(file_get_contents('php://input'));
-		$response = new Responseobject;		
-		$array_data = (array)$data;
-
-		$validator = Validator::make($array_data, [
+		$response = new Responseobject();
+		
+		$validator = Validator::make($request->json()->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
