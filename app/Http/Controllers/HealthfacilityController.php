@@ -7,7 +7,7 @@ use Datatables;
 use App\Healthfacility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Log;
 class HealthfacilityController extends Controller
 {
     /**
@@ -110,12 +110,9 @@ class HealthfacilityController extends Controller
         $districts = DB::table('districts')->get();
         $healthfacility = Healthfacility::findOrFail($id);
         $supplies = DB::table('stockitems')->get();
-        $hcf_supplies = DB::table('stockitemchanges')->where([
-          ['healthfacility_id','=',$id]
-        ])->orderBy('id','DESC')->paginate(5);
-        $hcf_issues = DB::table('issues')->where([
-          ['healthfacility_id','=', $id],
-        ])->orderBy('id','DESC')->paginate(5);
+        $hcf_supplies = DB::table('stockitemchanges')->where(['healthfacility_id' => $id])->orderBy('id','DESC')->paginate(5);
+        Log::info($hcf_supplies);
+        $hcf_issues = DB::table('issues')->where([['healthfacility_id','=', $id]])->orderBy('id','DESC')->paginate(5);
         return view('healthfacility.view', compact('healthfacility','districts','supplies','hcf_supplies','hcf_issues'));
     }
 
