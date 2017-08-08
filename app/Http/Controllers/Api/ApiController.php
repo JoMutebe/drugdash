@@ -56,18 +56,17 @@ class ApiController extends Controller
 	}
 
 	public function report_on_item(Request $request){
-		$data = $request->json()->all();
-		Log::info($data);		
+		$data = $request->json()->all();		
 		$response = new ResponseObject;
 		$change = new Stockitemchanges();
-		$change->created_by = $data->created_by;
-		$change->updated_by = $data->updated_by;
-		$change->healthfacility_id = $data->healthfacility_id;
-		$change->stockitem_id = $data->stockitem_id;
-		$change->occured_at = $data->occured_at;
-		$change->type = $data->type;
-		$change->value = $data->value;
-
+		$change->created_by = $data['created_by'];
+		$change->updated_by = $data['updated_by'];
+		$change->healthfacility_id = $data['healthfacility_id'];
+		$change->stockitem_id = $data['stockitem_id'];
+		$change->occured_at = $data['occured_at'];
+		$change->type = $data['type'];
+		$change->value = $data['value'];
+		$change->balance = $data['value'];
 		if($change->save()){
 			$response->status = $response::status_ok;
 			$response->code = $response::code_ok;
