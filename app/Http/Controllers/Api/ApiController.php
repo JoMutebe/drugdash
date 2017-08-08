@@ -55,16 +55,15 @@ class ApiController extends Controller
 			);
 	}
 
-	public function report_on_item(){
-		$data = json_decode(file_get_contents('php://input'));
-		//Log::info($data);
+	public function report_on_item(Request $request){
+		$data = $request->json()->all();
+		Log::info($data);		
 		$response = new ResponseObject;
 		$change = new Stockitemchanges();
-		//$change->district_id = 1;
 		$change->created_by = $data->created_by;
 		$change->updated_by = $data->updated_by;
-		$change->healthfacility_id = $data->facility;
-		$change->stockitem_id = $data->item;
+		$change->healthfacility_id = $data->healthfacility_id;
+		$change->stockitem_id = $data->stockitem_id;
 		$change->occured_at = $data->occured_at;
 		$change->type = $data->type;
 		$change->value = $data->value;
@@ -86,16 +85,15 @@ class ApiController extends Controller
 
 	public function report_issue(){
 		$request = json_decode(file_get_contents('php://input'));
-		$response = new Responseobject;
-		$user_id = 1;
+		$response = new Responseobject;		
 		$issue = new Issue();
-      	$issue->district_id = $request->district_id;
-      	$issue->healthfacility_id = $request->facility;
-      	$issue->status = 'Open';
+		$issue->status = 'Open';
+      	$issue->district_id = 1;
+      	$issue->healthfacility_id = $request->healthfacility_id;      	
       	$issue->urgency = $request->urgency;
       	$issue->description = $request->description;
-      	$issue->created_by = $user_id;
-      	$issue->updated_by = $user_id;
+      	$issue->created_by = $request->created_by;
+      	$issue->updated_by = $request->updated_by;
 
       	if($issue->save()){
       		$response->status = $response::status_ok;
