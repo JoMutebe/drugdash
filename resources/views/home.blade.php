@@ -156,7 +156,7 @@
         text: 'Monthly Average Condom Usage'
     },
     subtitle: {
-        text: ''
+        text: 'Source: Bukedea District'
     },
     xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -193,6 +193,9 @@ Highcharts.chart('container', {
     title: {
         text: 'Average Monthly StockOut Tallies'
     },
+    subtitle: {
+        text: 'Source: Bukedea District'
+    },
    xAxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
@@ -219,7 +222,7 @@ Highcharts.chart('data', {
         text: 'Average Monthly Stock Usage Comparisons'
     },
     subtitle: {
-        text: ''
+        text: 'Source: Bukedea District'
     },
     xAxis: {
         categories: [
