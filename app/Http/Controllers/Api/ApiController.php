@@ -56,7 +56,8 @@ class ApiController extends Controller
 	}
 
 	public function report_on_item(Request $request){
-		$data = $request->json()->all();		
+		$data = $request->json()->all();
+		Log::info($data);		
 		$response = new ResponseObject;
 		$change = new Stockitemchanges();
 		$change->created_by = $data['created_by'];
