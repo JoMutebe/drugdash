@@ -8,6 +8,7 @@ use App\Healthfacility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Log;
+
 class HealthfacilityController extends Controller
 {
     /**
@@ -107,12 +108,21 @@ class HealthfacilityController extends Controller
      */
     public function show($id)
     {
+       
         $districts = DB::table('districts')->get();
         $healthfacility = Healthfacility::findOrFail($id);
         $supplies = DB::table('stockitems')->get();
-        $hcf_supplies = DB::table('stockitemchanges')->where(['healthfacility_id' => $id])->orderBy('id','DESC')->paginate(5);
-        Log::info($hcf_supplies);
-        $hcf_issues = DB::table('issues')->where([['healthfacility_id','=', $id]])->orderBy('id','DESC')->paginate(5);
+        $hcf_supplies  = DB::table('stockitemchanges')
+                        ->join('stockitems','stockitemchanges.stockitem_id','=','stockitems.id')
+                        ->join('healthfacilities','stockitemchanges.healthfacility_id','=','healthfacilities.id')
+                        ->join('users','stockitemchanges.created_by','=','users.id')
+                        ->select('users.name as created_by','stockitems.common_name as medicine','stockitems.unit_of_measure','healthfacilities.name as facility','stockitemchanges.value','stockitemchanges.type','stockitemchanges.balance', 'stockitemchanges.created_at')
+                        ->where('stockitemchanges.healthfacility_id',$id)->orderBy('stockitemchanges.id','DESC')->paginate(20,['*'],'supplies');
+        
+        $hcf_issues = DB::table('issues')
+                      ->join('users','issues.created_by','=','users.id')
+                      ->select('issues.description','issues.status','issues.urgency','users.name as raised_by','issues.created_at')
+                      ->where([['healthfacility_id','=', $id]])->orderBy('issues.id','DESC')->paginate(5,['*'],'issues');
         return view('healthfacility.view', compact('healthfacility','districts','supplies','hcf_supplies','hcf_issues'));
     }
 
