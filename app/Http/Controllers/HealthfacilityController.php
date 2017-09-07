@@ -135,6 +135,8 @@ class HealthfacilityController extends Controller
     public function edit($id)
     {
         //
+        $healthfacility = Healthfacility::findOrFail($id);
+        return view('healthfacility.edit', compact('healthfacility'));
     }
 
     /**
@@ -147,6 +149,24 @@ class HealthfacilityController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $healthfacility = Healthfacility::findOrFail($id);
+        $healthfacility->incharge_name=$request->incharge_name;
+        $healthfacility->incharge_tel=$request->incharge_tel;
+        $healthfacility->store_manager_name=$request->store_manager_name;
+        $healthfacility->store_manager_tel=$request->store_manager_tel;
+        $healthfacility->bio_stat_name=$request->bio_stat_name;
+        $healthfacility->bio_stat_tel=$request->bio_stat_tel;
+        $healthfacility->activation_code = strtoupper(str_random(8));
+        if($healthfacility->save()){
+        flash("Healthfacility has been saved!","success");
+        return redirect('/healthfacilities/'.$request->healthfacility_id);
+        }
+        else{
+        flash("Something went wrong while processing your request! Try again later","error");
+        }
+
+
+
     }
 
     /**

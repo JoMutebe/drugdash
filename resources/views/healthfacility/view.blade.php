@@ -9,9 +9,15 @@
 </div>
 <div class="container">
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
+   <div class="panel-heading">
+      General Health Facility Information
+     <div class="btn-group pull-right">
+					<a href="/healthfacilities/{{$healthfacility->id}}/edit" class="btn btn-default btn-sm" title="Edit Healthfacility Details">Edit</a>
+				</div>
+   </div>
       <div class="panel-body">
-        <h2 class="line_30">General Health Facility Information</h2>
+        
 
         <table class="countries_list">
           <tbody>
