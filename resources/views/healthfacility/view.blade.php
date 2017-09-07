@@ -8,10 +8,16 @@
   </div>
 </div>
 <div class="container">
-  <div class="col-md-4">
-    <div class="panel panel-default">
+  <div class="col-md-12">
+    <div class="panel panel-info">
+   <div class="panel-heading">
+      General Health Facility Information
+     <div class="btn-group pull-right">
+					<a href="/healthfacilities/{{$healthfacility->id}}/edit" class="btn btn-default btn-sm" title="Edit Healthfacility Details">Edit</a>
+				</div>
+   </div>
       <div class="panel-body">
-        <h2 class="line_30">General Health Facility Information</h2>
+        
 
         <table class="countries_list">
           <tbody>
@@ -48,7 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="panel panel-info">
       <div class="panel-heading">
         Drug Stock Levels
@@ -67,20 +73,20 @@
               <th>Value</th>
               <th>Unit of measure</th>
               <th>Balance at hand</th>
-              <th>Created at</th>
-              <th>Actions</th>
+              <th>Created By</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
             @foreach($hcf_supplies as $item)
             <tr>
-              <td>{{$item->stockitem_id}}</td>
+              <td>{{$item->medicine}}</td>
               <td>{{$item->type}}</td>
-              <td>{{$item->value}}</td>
-              <td></td>
-              <td>{{$item->balance}}</td>
+              <td>{{(float) $item->value}}</td>
+              <td>{{$item->unit_of_measure}}</td>
+              <td>{{ (float) $item->balance}}</td>
+              <td>{{$item->created_by}}</td>
               <td>{{$item->created_at}}</td>
-              <td></td>
             </tr>
             @endforeach
         </table>
@@ -147,7 +153,7 @@
      </div>
 </div>
 <div class="container">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="panel panel-danger">
       <div class="panel-heading">
         Health center issues
@@ -164,7 +170,6 @@
               <th>Urgency</th>
               <th>Raised by</th>
               <th>Date raised</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -173,7 +178,7 @@
               <td>{{$item->description}}</td>
               <td>{{$item->status}}</td>
               <td>{{$item->urgency}}</td>
-              <td>{{$item->created_by}}</td>
+              <td>{{$item->raised_by}}</td>
               <td>{{$item->created_at}}</td>
               <td></td>
             </tr>

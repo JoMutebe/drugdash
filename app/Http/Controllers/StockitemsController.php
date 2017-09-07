@@ -80,11 +80,13 @@ class StockitemsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response'''
      */
     public function show($id)
     {
-        //
+         //$supplies = DB::table('stockitems')->get($id);
+         $stockitems = Stockitems::findOrFail($id);
+         return view('stockitems.view',compact('stockitems'));
     }
 
     /**
@@ -96,6 +98,8 @@ class StockitemsController extends Controller
     public function edit($id)
     {
         //
+        $stockitems = Stockitems::findOrFail($id);
+        return view ('stockitems.edit', compact ('stockitems'));
     }
 
     /**
@@ -108,7 +112,25 @@ class StockitemsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $stockitems = Stockitems::findOrFail($id);
+        $stockitems->common_name = $request->common_name;
+        $stockitems->brand_name = $request->brand_name;
+        $stockitems->code = $request->code;
+        $stockitems->category = $request->category;
+        $stockitems->unit_of_measure = $request->unit_of_measure;
+        $stockitems->unit_price = $request->unit_price;
+        $stockitems->created_by = Auth::user()->id;
+        $stockitems->updated_by = Auth::user()->id;
+       if($stockitems->save()){
+        flash("StockItem has been saved!","success");
+        return redirect('/stockitems');
+      }
+      else{
+        flash("Something went wrong while processing your request! Try again later","error");
+      }
+
     }
+        
 
     /**
      * Remove the specified resource from storage.
