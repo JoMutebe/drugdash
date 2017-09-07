@@ -159,4 +159,22 @@ class ApiController extends Controller
 			return Response::json($response);
 		}
 	}
+
+	public function sync_supplies(Request $request){
+		$data = $request->json()->all();
+		$response = new ResponseObject();
+		$response->status = $response::status_ok;
+		$response->code = $response::code_ok;
+		$response->result = [
+			[
+				"id" => 1,
+				"offsite_id" => 2
+			],
+			[
+				"id" => 2,
+				"offsite_id" =>  3
+			]
+		];
+		return Response::json($response);
+	}
 }
