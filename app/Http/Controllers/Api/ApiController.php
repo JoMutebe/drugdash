@@ -219,7 +219,7 @@ class ApiController extends Controller
 			}
 		}
 		$response->result = $result;
-		Log::info($response);
+		//Log::info($response);
 		return Response::json($response);
 	}
 
