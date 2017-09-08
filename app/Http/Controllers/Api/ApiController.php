@@ -236,9 +236,10 @@ class ApiController extends Controller
 				$issue = new Issue();
 				$issue->urgency = $item['urgency'];
 				$issue->status = "Open";
-				$issue->district_id = $item['district_id'];
+				$issue->district_id = 1;
 				$issue->healthfacility_id = $item['healthfacility_id'];
 				$issue->description = $item['description'];
+				$issue->title = $item['title'];
 				$issue->created_by = $item['created_by'];
 				$issue->updated_by = $item['updated_by'];
 				$issue->offline_id = $item['id'];
@@ -258,9 +259,10 @@ class ApiController extends Controller
 				$issue = new Issue();
 				$issue->urgency = $item['urgency'];
 				$issue->status = "Open";
-				$issue->district_id = $item['district_id'];
+				$issue->district_id = 1;
 				$issue->healthfacility_id = $item['healthfacility_id'];
 				$issue->description = $item['description'];
+				$issue->title = $item['title'];
 				$issue->created_by = $item['created_by'];
 				$issue->updated_by = $item['updated_by'];
 				$issue->offline_id = $item['id'];
