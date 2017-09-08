@@ -254,7 +254,7 @@ class ApiController extends Controller
 					Log::info($e);
 				}
 			}else{
-				$issue = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['offline_id']])->first();
+				$issue = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['online_id']])->first();
 				$issue = new Issue();
 				$issue->urgency = $item['urgency'];
 				$issue->status = "Open";
