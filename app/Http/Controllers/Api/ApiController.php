@@ -162,19 +162,40 @@ class ApiController extends Controller
 
 	public function sync_supplies(Request $request){
 		$data = $request->json()->all();
+		Log::info($data);
 		$response = new ResponseObject();
 		$response->status = $response::status_ok;
 		$response->code = $response::code_ok;
 		$response->result = [
 			[
 				"id" => 1,
-				"offsite_id" => 2
+				"online_id" => 2
 			],
 			[
 				"id" => 2,
-				"offsite_id" =>  3
+				"online_id" =>  3
 			]
 		];
 		return Response::json($response);
+	}
+
+	public function sync_issues(Request $request){
+		$data = $request->json()->all();
+		Log::info($data);
+		$response = new ResponseObject();
+		$response->status = $response::status_ok;
+		$response->code = $response::code_ok;
+		$response->result = [
+			[
+				"id" => 4,
+				"online_id" => 1
+			],
+			[
+				"id" => 3,
+				"online_id" =>  23
+			]
+		];
+		return Response::json($response);
+
 	}
 }

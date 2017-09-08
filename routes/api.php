@@ -33,3 +33,4 @@ Route::post('create_issue','Api\ApiController@report_issue');
 Route::post('create_stockchange','Api\ApiController@report_on_item');
 Route::post('activate','Api\ApiController@activate');
 Route::post('sync_supplies','Api\ApiController@sync_supplies');
+Route::post('sync_issues','Api\ApiController@sync_issues');
