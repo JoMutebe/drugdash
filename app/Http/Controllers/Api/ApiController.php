@@ -179,8 +179,8 @@ class ApiController extends Controller
 				$change->value = $item['value'];
 				$change->created_by = $item['created_by'];
 				$change->updated_by = $item['updated_by'];
-				$change->created_at = $item['created_at'];
-				$change->updated_at = $item['updated_at'];
+				//$change->created_at = $item['created_at'];
+				//$change->updated_at = $item['updated_at'];
 				$change->balance = $item['balance'];
 				$change->healthfacility_id = $item['healthfacility_id'];
 				try{
@@ -202,8 +202,8 @@ class ApiController extends Controller
 				$record->value = $item['value'];
 				$record->created_by = $item['created_by'];
 				$record->updated_by = $item['updated_by'];
-				$record->created_at = $item['created_at'];
-				$record->updated_at = $item['updated_at'];
+				//$record->created_at = $item['created_at'];
+				//$record->updated_at = $item['updated_at'];
 				$record->balance = $item['balance'];
 				$record->healthfacility_id = $item['healthfacility_id'];
 				try{
