@@ -186,8 +186,8 @@ class ApiController extends Controller
 				try{
 					if($change->save()){
 						$res = [];
-						$res->id = $item['id'];
-						$res->online_id = $change->id;
+						$res['id'] = $item['id'];
+						$res['online_id'] = $change->id;
 						array_push($result,$res);
 					}
 				}catch(\Exception $e){
