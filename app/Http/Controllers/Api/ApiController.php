@@ -168,7 +168,7 @@ class ApiController extends Controller
 		$response->code = $response::code_ok;
 		$result = [];
 		foreach($data as $item){
-			Log::info($item['value']);
+			//Log::info($item['value']);
 			$record = Stockitemchanges::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['id']])->first();
 			if(count($record) < 1){
 				$change = new Stockitemchanges();
@@ -225,20 +225,59 @@ class ApiController extends Controller
 
 	public function sync_issues(Request $request){
 		$data = $request->json()->all();
-		Log::info($data);
+		//Log::info($data);
 		$response = new ResponseObject();
 		$response->status = $response::status_ok;
 		$response->code = $response::code_ok;
-		$response->result = [
-			[
-				"id" => 4,
-				"online_id" => 1
-			],
-			[
-				"id" => 3,
-				"online_id" =>  23
-			]
-		];
+		$result = [];
+		foreach ($data as $item) {
+			$record = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['offline_id']])->first();
+			if(count($record) < 1){
+				$issue = new Issue();
+				$issue->urgency = $item['urgency'];
+				$issue->status = "Open";
+				$issue->district_id = $item['district_id'];
+				$issue->healthfacility_id = $item['healthfacility_id'];
+				$issue->description = $item['description'];
+				$issue->created_by = $item['created_by'];
+				$issue->updated_by = $item['updated_by'];
+				$issue->offline_id = $item['id'];
+				try{
+					if($issue->save()){
+						$res = [];
+						$res['id'] => $item['id'];
+						$res['online_id'] = $issue->id;
+						array_push($result, $res);
+					}
+				}
+				catch(\Exception $e){
+					Log::info($e);
+				}
+			}else{
+				$issue = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['offline_id']])->first();
+				$issue = new Issue();
+				$issue->urgency = $item['urgency'];
+				$issue->status = "Open";
+				$issue->district_id = $item['district_id'];
+				$issue->healthfacility_id = $item['healthfacility_id'];
+				$issue->description = $item['description'];
+				$issue->created_by = $item['created_by'];
+				$issue->updated_by = $item['updated_by'];
+				$issue->offline_id = $item['id'];
+				try{
+					if($issue->save()){
+						$res = [];
+						$res['id'] => $item['id'];
+						$res['online_id'] = $issue->id;
+						array_push($result, $res);
+					}
+				}
+				catch(\Exception $e){
+					Log::info($e);
+				}
+
+			}
+		}
 		return Response::json($response);
 
 	}
