@@ -166,16 +166,59 @@ class ApiController extends Controller
 		$response = new ResponseObject();
 		$response->status = $response::status_ok;
 		$response->code = $response::code_ok;
-		$response->result = [
-			[
-				"id" => 1,
-				"online_id" => 2
-			],
-			[
-				"id" => 2,
-				"online_id" =>  3
-			]
-		];
+		$result = [];
+		foreach($data as $item){
+			Log::info($item->value);
+			$record = Stockitemchanges::find()->where(['healthfacility_id' => $item->healthfacility_id,'offline_id' => $item->id])->first();
+			if(count($record) < 1){
+				$change = new Stockitemchanges();
+				$change->offline_id = $item->id;
+				$change->stockitem_id = $item->stockitem_id;
+				$change->type = $item->type;
+				$change->occured_at = $item->occured_at;
+				$change->value = $item->value;
+				$change->created_by = $item->created_by;
+				$change->updated_by = $item->updated_by;
+				$change->created_at = $item->created_at;
+				$change->updated_at = $item->updated_at;
+				$change->balance = $item->balance;
+				$change->healthfacility_id = $item->healthfacility_id;
+				try{
+					if($change->save()){
+						$res = [];
+						$res->id = $item->id;
+						$res->online_id = $change->id;
+						array_push($result,$res);
+					}
+				}catch(\Exception $e){
+					Log:info($e);
+				}
+			}
+			else{
+				$record->offline_id = $item->id;
+				$record->stockitem_id = $item->stockitem_id;
+				$record->type = $item->type;
+				$record->occured_at = $item->occured_at;
+				$record->value = $item->value;
+				$record->created_by = $item->created_by;
+				$record->updated_by = $item->updated_by;
+				$record->created_at = $item->created_at;
+				$record->updated_at = $item->updated_at;
+				$record->balance = $item->balance;
+				$record->healthfacility_id = $item->healthfacility_id;
+				try{
+					if($record->save()){
+						$res = [];
+						$res->id = $item->id;
+						$res->online_id = $record->id;
+						array_push($result,$res);
+					}
+				}catch(\Exception $e){
+					Log:info($e);
+				}
+			}
+		}
+		$response->result = $result;
 		return Response::json($response);
 	}
 
