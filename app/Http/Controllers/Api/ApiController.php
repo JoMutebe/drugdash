@@ -168,8 +168,8 @@ class ApiController extends Controller
 		$response->code = $response::code_ok;
 		$result = [];
 		foreach($data as $item){
-			Log::info($item->value);
-			$record = Stockitemchanges::find()->where(['healthfacility_id' => $item->healthfacility_id,'offline_id' => $item->id])->first();
+			Log::info($item['value']);
+			$record = Stockitemchanges::find()->where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['id']])->first();
 			if(count($record) < 1){
 				$change = new Stockitemchanges();
 				$change->offline_id = $item->id;
