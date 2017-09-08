@@ -214,7 +214,7 @@ class ApiController extends Controller
 						array_push($result,$res);
 					}
 				}catch(\Exception $e){
-					Log:info($e);
+					Log::info($e);
 				}
 			}
 		}
