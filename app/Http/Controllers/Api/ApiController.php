@@ -267,7 +267,7 @@ class ApiController extends Controller
 				try{
 					if($issue->save()){
 						$res = [];
-						$res['id'] => $item['id'];
+						$res['id'] = $item['id'];
 						$res['online_id'] = $issue->id;
 						array_push($result, $res);
 					}
