@@ -231,7 +231,7 @@ class ApiController extends Controller
 		$response->code = $response::code_ok;
 		$result = [];
 		foreach ($data as $item) {
-			$record = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['offline_id']])->first();
+			$record = Issue::where(['healthfacility_id' => $item['healthfacility_id'],'offline_id' => $item['online_id']])->first();
 			if(count($record) < 1){
 				$issue = new Issue();
 				$issue->urgency = $item['urgency'];
@@ -267,6 +267,7 @@ class ApiController extends Controller
 				try{
 					if($issue->save()){
 						$res = [];
+
 						$res['id'] = $item['id'];
 						$res['online_id'] = $issue->id;
 						array_push($result, $res);
