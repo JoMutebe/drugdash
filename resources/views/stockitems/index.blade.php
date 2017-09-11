@@ -7,7 +7,7 @@
           <strong>EMS List</strong>
           <a class="btn btn-sm btn-primary pull-right"   title="Add stockitem" href="{{action('StockitemsController@create')}}">
               <i class="fa fa-plus"></i>
-          </a>    
+          </a>  
          
         </div>
 
