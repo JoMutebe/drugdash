@@ -68,7 +68,7 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="#">
+                    <a href="/">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
@@ -99,19 +99,19 @@
                 </li>
                 <li>
                     <a href="/order">
-                        <i class="ti-map"></i>
+                        <i class="ti-announcement"></i>
                         <p>Alerts</p>
                     </a>
                 </li>
                 <li>
                     <a href="/districts">
-                        <i class="ti-bell"></i>
+                        <i class="ti-location-arrow"></i>
                         <p>Location</p>
                     </a>
                 </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="ti-export"></i>
+				<li>
+                    <a href="/profile">
+                        <i class="ti-user"></i>
                         <p>User Account</p>
                     </a>
                 </li>
@@ -148,23 +148,31 @@
                                 <li><a href="#">Another notification</a></li>
                               </ul>
                         </li>
-					<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<p>{{ Auth::user()->name }}</p>
-                  <b class="caret"></b>
-                   <ul class="dropdown-menu">
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/counties">Change Password</a></li>
-                    <li><a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                        Logout
-                    </a></li>
-
-                  </ul>
-                            </a>
-                        </li>
-                    </ul>
+            <ul class="nav navbar-nav navbar-right">
+			<li class="">
+                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <img src="/img/user.png">{{ Auth::user()->name }}
+                  <span class=" fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                  <li><a href="javascript:;"> Profile</a></li>
+                  <li>
+                    <a href="javascript:;">
+                      <!-- <span class="badge bg-red pull-right">50%</span> -->
+                      <span>Settings</span>
+                    </a>
+                  </li>
+                  <li><a href="javascript:;">Help</a></li>
+                  <li><a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                      Logout
+                  </a></li>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
+                </ul>
+              </li>
 
                 </div>
             </div>
@@ -178,12 +186,9 @@
 
 
         <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-right">
                 <div class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script> <i>DrugDash - A drug decision support system</i> by <a href="http://www.drugdash.org">Prunes Technologies</a>
                 </div>
-            </div>
         </footer>
 
     </div>
@@ -207,7 +212,8 @@
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
+      
+     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="theme/js/paper-dashboard.js"></script>
 
@@ -221,7 +227,7 @@
 
         	$.notify({
             	icon: 'ti-gift',
-            	message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
+            	message: "WELCOME <b>{{ Auth::user()->name }}</b>"
 
             },{
                 type: 'success',
@@ -240,6 +246,6 @@
   <!-- Highcharts-->
   <script src="{{ asset('js/highcharts.js')}}"></script>
   <!--Load dynamic scripts-->
-  
+
   @stack('scripts')
 </html>

@@ -400,7 +400,10 @@ hr {
     padding: 30px 15px;
     min-height: calc(100% - 123px); }
   .main-panel > .footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.1); }
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right:0px;
+    padding:0px; }
+    
   .main-panel .navbar {
     margin-bottom: 0; }
 
