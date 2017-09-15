@@ -184,13 +184,14 @@
       </div>
       <!-- /page content -->
 
-    
+        <footer class="footer">
+            <div class="container-fluid">
         <footer class="footer">
                 <div class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script> <i>DrugDash - A drug decision support system</i> by <a href="http://www.drugdash.org">Prunes Technologies</a>
                 </div>
         </footer>
-
+       </footer> 
     </div>
 </div>
 

@@ -1345,6 +1345,9 @@ textarea.form-control {
   background-attachment: fixed;
   position: relative;
   line-height: 20px;
+  margin : 0;
+  padding : 0;
+
    }
   
   .footer nav ul {
@@ -1354,11 +1357,11 @@ textarea.form-control {
     font-weight: normal;
      }
     .footer nav ul li {
-      display: inline-block;
+      display: block;
       padding: 10px 15px;
       margin: 15px 3px;
       line-height: 20px;
-      text-align: center;
+      text-align: right;
        }
     .footer nav ul a:not(.btn) {
       color: #66615b;
@@ -1374,7 +1377,8 @@ textarea.form-control {
     white-space: nowrap;
     margin: 15px 3px;
     line-height: 20px;
-    text-align: center; }
+    text-align: right; 
+    }
   .footer .heart {
     color: #EB5E28; }
 
