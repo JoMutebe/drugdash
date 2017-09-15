@@ -75,7 +75,7 @@
                 </li>
                 <li>
                     <a href="/healthfacilities">
-                        <i class="ti-user"></i>
+                        <i class="ti-support"></i>
                         <p>Healthcenters</p>
                     </a>
                 </li>
@@ -184,7 +184,7 @@
       </div>
       <!-- /page content -->
 
-
+    
         <footer class="footer">
                 <div class="copyright pull-right">
                     &copy; <script>document.write(new Date().getFullYear())</script> <i>DrugDash - A drug decision support system</i> by <a href="http://www.drugdash.org">Prunes Technologies</a>
