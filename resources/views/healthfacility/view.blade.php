@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
   <div class="row">
     <div class="col-md-12"><h3>{{$healthfacility->name}} {{$healthfacility->level}}</h3></div>
 
-  </div>
+  
 </div>
-<div class="container">
+<div class="row">
   <div class="col-md-12">
     <div class="panel panel-info">
    <div class="panel-heading">
@@ -152,7 +152,7 @@
          </div>
      </div>
 </div>
-<div class="container">
+<div class="row">
   <div class="col-md-12">
     <div class="panel panel-danger">
       <div class="panel-heading">
